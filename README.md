@@ -1,6 +1,6 @@
-# vue-demo
+# vue-typescript-playground
 
-> A Vue.js project
+> A Vue.js + TypeScript playground scaffolded via Vue-CLI
 
 ## Build Setup
 
