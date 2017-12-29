@@ -7,14 +7,20 @@
         <p>End: {{ props.row.labelEndTimestamp }}</p>
       </template>
     </el-table-column>
-    <el-table-column prop="labelDefinitionName" label="Name" sortable width="140"></el-table-column>
+    <el-table-column prop="labelDefinitionName" label="Name" sortable>
+      <template slot-scope="scope">
+        <div v-if="!scope.row.editMode">{{ scope.row.labelDefinitionName}}</div>
+        <div v-if="scope.row.editMode">
+          <input v-model="scope.row.labelDefinitionName">
+        </div>
+      </template>
+    </el-table-column>
     <el-table-column prop="labelStartTimestamp" label="Start" sortable>
       <template slot-scope="scope">
         {{ scope.row.labelStartTimestamp | date}}
       </template>
     </el-table-column>
-    <el-table-column prop="labelEndTimestamp" label="End" sortable width="120"
-                     :formatter="dateFormatter"></el-table-column>
+    <el-table-column prop="labelEndTimestamp" label="End" sortable :formatter="dateFormatter"></el-table-column>
     <el-table-column prop="labelId" label="Label id" sortable></el-table-column>
     <el-table-column prop="sasswVersion" label="Sassw Version" sortable></el-table-column>
     <el-table-column prop="traceDuration" label="traceDuration" sortable></el-table-column>
@@ -52,11 +58,12 @@
       })
     },
     methods: {
-      handleEdit(index: number, row: {}) {
-        console.log(index, row);
+      handleEdit(index: number, row: {editMode: boolean}) {
+        row.editMode = !row.editMode;
+        Vue.set(this.labels, index, row)
       },
       handleDelete(index: number, row: {}) {
-        console.log(index, row);
+        this.labels.splice(index, 1)
       },
       dateFormatter(row: { labelEndTimestamp: number }, column: string) {
         return Vue.filter('date')(row.labelEndTimestamp)
