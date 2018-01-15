@@ -43,27 +43,20 @@
   import Vue from 'vue';
   import LabelService from "./LabelService";
   import {DELETE_LABEL, EDIT_LABEL, SET_LABELS} from '../../store/mutation-types';
-
-  interface ILabel {
-    editMode: boolean;
-  }
+  import {ILabel} from '../../shared/interfaces/ILabel';
 
   export default Vue.extend({
-    data() {
-      return {
-        loading: true
-      }
-    },
     created() {
       LabelService.getLabels().then(response => {
         this.$store.commit(SET_LABELS, response.data.labelExtendedDTOList)
-
-        this.loading = false;
       })
     },
     computed: {
       labels(): ILabel[] {
         return this.$store.state.labels
+      },
+      loading(): boolean {
+        return this.$store.state.loading
       }
     },
     methods: {
