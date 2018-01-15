@@ -41,29 +41,38 @@
 <script lang="ts">
   /* eslint-disable */
   import Vue from 'vue';
-  import axios from 'axios';
   import LabelService from "./LabelService";
+  import {DELETE_LABEL, EDIT_LABEL, SET_LABELS} from '../../store/mutation-types';
+
+  interface ILabel {
+    editMode: boolean;
+  }
 
   export default Vue.extend({
     data() {
       return {
-        labels: [],
         loading: true
       }
     },
     created() {
       LabelService.getLabels().then(response => {
-        this.labels = response.data.labelExtendedDTOList
+        this.$store.commit(SET_LABELS, response.data.labelExtendedDTOList)
+
         this.loading = false;
       })
     },
+    computed: {
+      labels(): ILabel[] {
+        return this.$store.state.labels
+      }
+    },
     methods: {
-      handleEdit(index: number, row: {editMode: boolean}) {
+      handleEdit(index: number, row: ILabel) {
         row.editMode = !row.editMode;
-        Vue.set(this.labels, index, row)
+        this.$store.commit(EDIT_LABEL, {row, index})
       },
-      handleDelete(index: number, row: {}) {
-        this.labels.splice(index, 1)
+      handleDelete(index: number, row: ILabel) {
+        this.$store.commit(DELETE_LABEL, index)
       },
       dateFormatter(row: { labelEndTimestamp: number }, column: string) {
         return Vue.filter('date')(row.labelEndTimestamp)
