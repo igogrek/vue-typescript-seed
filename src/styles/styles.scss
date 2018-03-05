@@ -1,0 +1,21 @@
+@import 'variables';
+@import 'mixins';
+// Override bulma overrides
+@import './bulma-overrides';
+
+body {
+  font-size: $base-font-size;
+}
+
+.title.is-6 {
+  font-weight: bold;
+  color: $magenta;
+}
+
+.centered {
+  @include centered;
+}
+
+.button.is-large {
+  border-color: $magenta-dark;
+}

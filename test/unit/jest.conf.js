@@ -3,31 +3,32 @@ const path = require('path');
 module.exports = {
   rootDir: path.resolve(__dirname, '../../'),
   moduleFileExtensions: [
-    'js',
     'ts',
+    'js',
     'json',
-    'vue',
+    'vue'
   ],
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@/(.*)$': '<rootDir>/src/$1'
   },
   transform: {
+    '^.+\\.tsx?$': 'ts-jest',
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
-    '^.+\\.ts$': 'ts-jest',
-    '.*\\.(vue)$': '<rootDir>/node_modules/vue-jest',
+    '.*\\.(vue)$': '<rootDir>/node_modules/vue-jest'
   },
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   testPathIgnorePatterns: [
-    '<rootDir>/test/e2e',
+    '<rootDir>/test/e2e'
   ],
   snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
   setupFiles: ['<rootDir>/test/unit/setup'],
   mapCoverage: true,
-  coverageDirectory: '<rootDir>/test/unit/coverage',
+  coverageDirectory: '<rootDir>/test/unit/reports/coverage',
   collectCoverageFrom: [
-    'src/**/*.{js,vue}',
+    'src/**/*.{ts,vue}',
     '!src/main.js',
     '!src/router/index.js',
-    '!**/node_modules/**',
+    '!**/node_modules/**'
   ],
+  testResultsProcessor: './node_modules/jest-html-reporter'
 };

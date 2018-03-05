@@ -1,25 +1,15 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Labels from '../components/tables/Labels.vue'
-import Drives from '../components/tables/Drives.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import ButtonTest from '../components/example/ButtonTest.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/labels'
+      name: 'ButtonTest',
+      component: ButtonTest,
     },
-    {
-      path: '/labels',
-      name: 'Labels',
-      component: Labels
-    },
-    {
-      path: '/drives',
-      name: 'Drives',
-      component: Drives
-    }
-  ]
-})
+  ],
+});

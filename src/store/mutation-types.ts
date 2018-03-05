@@ -1,3 +1,3 @@
-export const SET_LABELS = 'SET_LABELS';
-export const EDIT_LABEL = 'EDIT_LABEL';
-export const DELETE_LABEL = 'DELETE_LABEL';
+export const SET_ITEMS = 'SET_ITEMS';
+export const EDIT_ITEM = 'EDIT_ITEM';
+export const DELETE_ITEM = 'DELETE_ITEM';

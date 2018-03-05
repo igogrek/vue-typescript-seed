@@ -15,7 +15,10 @@
   "include": [
     "./src/**/*.ts"
   ],
-  "files" : [
+  "exclude": [
+    "./src/**/*test.ts"
+  ],
+  "files": [
     "vue-shims.d.ts"
   ]
 }

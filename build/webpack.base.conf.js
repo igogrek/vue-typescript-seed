@@ -47,16 +47,16 @@ module.exports = {
         options: vueLoaderConfig
       },
       {
-        test: /\.ts$/,
-          loader: "ts-loader",
-          options: {
-          appendTsSuffixTo: [/\.vue$/]
-        }
-      },
-      {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+      },
+      {
+        test: /\.ts$/,
+        loader: "ts-loader",
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

@@ -1,22 +1,29 @@
 <template>
-  <root></root>
+  <div id="app">
+    <Header/>
+    <div class="view">
+      <router-view/>
+    </div>
+    <Footer/>
+  </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import Root from './components/Root';
+  import ButtonTest from './components/example/ButtonTest.vue';
 
   export default Vue.extend({
-    name: 'app',
+    name: 'App',
     components: {
-      root: Root,
-    },
+      ButtonTest
+    }
   });
 </script>
 
-<style>
-  body {
-    font-family: Helvetica, sans-serif;
-    text-align: center;
+<style lang="scss" scoped>
+  @import './styles/variables';
+
+  .view {
+    margin-top: $header-height;
   }
 </style>

@@ -1,31 +1,25 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import {DELETE_LABEL, EDIT_LABEL, SET_LABELS} from './mutation-types'
-import {ILabel} from '../shared/interfaces/ILabel';
+import {DELETE_ITEM, EDIT_ITEM, SET_ITEMS} from './mutation-types'
 
 Vue.use(Vuex)
 
-interface ILabelsState {
-  labels: ILabel[];
-  loading: boolean;
-}
-
 export default new Vuex.Store({
   state: {
-    labels: [],
+    items: [],
     loading: true
   },
   mutations: {
-    [SET_LABELS](state: ILabelsState, payload) {
-      state.labels = payload;
+    [SET_ITEMS](state, payload) {
+      state.items = payload;
       state.loading = false;
     },
-    [DELETE_LABEL](state: ILabelsState, index: number) {
-      state.labels.splice(index, 1)
+    [DELETE_ITEM](state, index: number) {
+      state.items.splice(index, 1)
     },
-    [EDIT_LABEL](state: ILabelsState, payload) {
-      Vue.set(state.labels, payload.index, payload.row)
+    [EDIT_ITEM](state, payload) {
+      Vue.set(state.items, payload.index, payload.item)
     },
   },
 })
