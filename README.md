@@ -44,9 +44,8 @@ yarn run build --report
 # Run unit tests in watch mode for development
 yarn run unit-watch
 
-# Run e2e and generate HTML report together 
-# (!) Report will not be generated in case of error in e2e tests
-yarn run e2e-html-report
+# Perform ESLint code check + autofix all possible issues
+yarn run lint --fix
 ```
 
 ## WebStorm / Intellij IDEA configuration
