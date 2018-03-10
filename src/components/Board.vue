@@ -1,40 +1,26 @@
 <template>
-  <div class="columns board">
-    <div class="column">
+  <div class="columns board" :class="{'dragged': dragged}">
+    <div
+        class="column"
+         draggable="true"
+         v-for="(list, index) in lists"
+         :key="index"
+
+        :index="index"
+        @dragstart="dragStart"
+        @dragenter="dragover"
+        @dragend="dragend">
 
       <div class="list">
-        <h4 class="header title is-4">Item</h4>
+        <h4 class="header title is-4">{{ list.name }}</h4>
         <div class="body">
-          <div
-            class="item"
-            v-for="(item, index) in items"
-            :key="index">
+          <!--<div-->
+            <!--class="item"-->
+            <!--v-for="(item, index) in items"-->
+            <!--:key="index">-->
 
-            {{ item.name }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="column">
-      <div class="list">
-        <div class="header title is-4">Item</div>
-        <div class="body">
-          <div class="item">ITEM</div>
-        </div>
-      </div>
-    </div>
-    <div class="column">
-      <div class="list">
-        <div class="header title is-4">Item</div>
-        <div class="body">
-          <div class="item">ITEM</div>
-        </div>
-      </div>
-    </div>
-    <div class="column">
-      <div class="list">
-        <div class="header title is-4">Item</div>
-        <div class="body">
+            <!--{{ item.name }}-->
+          <!--</div>-->
           <div class="item">ITEM</div>
         </div>
       </div>
@@ -49,6 +35,14 @@
     name: 'Board',
     data() {
       return {
+        dragIndex: 0,
+        dropIndex: 0,
+        dragged: false,
+        lists: [
+          {name: 'TODO'},
+          {name: 'Groceries'},
+          {name: 'Tasks'}
+        ],
         items: [
           {name: 'Ford', model: 'Focus'},
           {name: 'BMW', model: 'X5'},
@@ -57,8 +51,25 @@
       };
     },
     methods: {
-      test() {
+      dragStart(event: DragEvent) {
+        const element = event.target as HTMLElement;
+        this.dragIndex = Number(element.getAttribute('index'));
+        this.dragged = true;
+      },
+      dragover(event: DragEvent) {
+        const element = event.target as HTMLElement;
+        this.dropIndex = Number(element.getAttribute('index'));
+        console.log(this.dropIndex, event)
 
+      },
+      arraymove(arr: {}[], fromIndex: number, toIndex: number) {
+        const element = arr[fromIndex];
+        arr.splice(fromIndex, 1);
+        arr.splice(toIndex, 0, element);
+      },
+      dragend(event: DragEvent) {
+        this.arraymove(this.lists, this.dragIndex, this.dropIndex)
+        this.dragged = false;
       }
     }
   });
@@ -72,6 +83,10 @@
     .list {
       height: 100%;
       background-color: #e2e4e6;
+
+      .dragged {
+        pointer-events: none;
+      }
 
       .header {
         padding: 10px;
