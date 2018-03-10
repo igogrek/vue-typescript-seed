@@ -1,9 +1,9 @@
 <template>
-  <div class="columns board">
+  <div class=" board">
     <Sortable
-      class="column"
-      :items="lists">
-
+      :items="lists"
+      :itemClass="'column'"
+      class="columns">
       <div
         class="list"
         slot="item"
@@ -51,7 +51,7 @@
   });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .board {
     height: 100%;
     padding: 20px;

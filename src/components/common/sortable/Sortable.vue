@@ -2,9 +2,8 @@
   <div :class="{'dragged': dragged}">
     <div
       draggable="true"
+      :class="[{'is-dropzone': item.dropzone}, itemClass]"
       v-for="(item, index) in sortableItems"
-      :key="index"
-      :class="{'is-dropzone': item.dropzone}"
       :index="index"
       @dragstart="dragStart"
       @dragenter="dragOver"
@@ -28,6 +27,7 @@
   export default Vue.extend({
     name: 'Sortable',
     props: {
+      itemClass: String,
       items: []
     },
     data() {
