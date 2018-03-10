@@ -6,7 +6,6 @@
       class="columns">
       <div
         class="list"
-        slot="item"
         slot-scope="slot">
         <h4 class="header title is-4">{{ slot.item.name }}</h4>
         <div class="body">

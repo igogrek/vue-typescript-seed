@@ -8,9 +8,7 @@
       @dragstart="dragStart"
       @dragenter="dragOver"
       @dragend="dragEnd">
-      <slot
-        name="item"
-        :item="item">
+      <slot :item="item">
         {{ item.name }}
       </slot>
     </div>
