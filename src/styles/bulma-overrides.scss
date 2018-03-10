@@ -5,9 +5,6 @@
 @import '~bulma/sass/utilities/initial-variables';
 @import '~bulma/sass/utilities/_all';
 
-// Fonts
-$family-serif: 'TeleGrotesk Next', serif;
-$family-primary: $family-serif;
 
 // Colors
 $primary: $magenta;
@@ -45,3 +42,4 @@ $size-large: $size-5;
 @import '~bulma/sass/elements/title';
 @import '~bulma/sass/elements/button';
 @import '~bulma/sass/elements/form';
+@import '~bulma/sass/grid/columns';

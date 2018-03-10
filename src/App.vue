@@ -21,9 +21,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import './styles/variables';
-
-  .view {
-    margin-top: $header-height;
+  #app, .view {
+    height: 100%;
   }
 </style>

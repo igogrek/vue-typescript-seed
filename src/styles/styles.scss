@@ -3,6 +3,11 @@
 // Override bulma overrides
 @import './bulma-overrides';
 
+html, body {
+  height: 100%;
+  background-color: #0079bf;
+}
+
 body {
   font-size: $base-font-size;
 }
