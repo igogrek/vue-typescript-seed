@@ -6,10 +6,11 @@
          v-for="(list, index) in lists"
          :key="index"
 
+        :class="{'is-dropzone': list.dropzone}"
         :index="index"
         @dragstart="dragStart"
-        @dragenter="dragover"
-        @dragend="dragend">
+        @dragenter="dragOver"
+        @dragend="dragEnd">
 
       <div class="list">
         <h4 class="header title is-4">{{ list.name }}</h4>
@@ -39,9 +40,9 @@
         dropIndex: 0,
         dragged: false,
         lists: [
-          {name: 'TODO'},
-          {name: 'Groceries'},
-          {name: 'Tasks'}
+          {name: 'TODO', dropzone: false},
+          {name: 'Groceries', dropzone: false},
+          {name: 'Tasks', dropzone: false}
         ],
         items: [
           {name: 'Ford', model: 'Focus'},
@@ -56,20 +57,20 @@
         this.dragIndex = Number(element.getAttribute('index'));
         this.dragged = true;
       },
-      dragover(event: DragEvent) {
+      dragOver(event: DragEvent) {
         const element = event.target as HTMLElement;
         this.dropIndex = Number(element.getAttribute('index'));
-        console.log(this.dropIndex, event)
-
+        this.lists.forEach((list, index) => list.dropzone = index === this.dropIndex);
+      },
+      dragEnd(event: DragEvent) {
+        this.arraymove(this.lists, this.dragIndex, this.dropIndex)
+        this.dragged = false;
+        this.lists.forEach((list, index) => list.dropzone = false);
       },
       arraymove(arr: {}[], fromIndex: number, toIndex: number) {
         const element = arr[fromIndex];
         arr.splice(fromIndex, 1);
         arr.splice(toIndex, 0, element);
-      },
-      dragend(event: DragEvent) {
-        this.arraymove(this.lists, this.dragIndex, this.dropIndex)
-        this.dragged = false;
       }
     }
   });
@@ -80,22 +81,35 @@
     height: 100%;
     padding: 20px;
 
-    .list {
-      height: 100%;
-      background-color: #e2e4e6;
-
-      .dragged {
+    &.dragged {
+      .list {
         pointer-events: none;
       }
+    }
 
-      .header {
-        padding: 10px;
+    .column {
+
+      &.is-dropzone {
+        background-color: red;
       }
 
-      .item {
-        padding: 10px;
-        margin: 10px;
-        background: white;
+      .list {
+        height: 100%;
+        background-color: #e2e4e6;
+
+
+
+        .header {
+          padding: 10px;
+        }
+
+        .item {
+          padding: 10px;
+          margin: 10px;
+          background: white;
+
+
+        }
       }
     }
   }
