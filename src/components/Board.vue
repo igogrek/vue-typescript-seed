@@ -1,44 +1,40 @@
 <template>
-  <div class="columns board" :class="{'dragged': dragged}">
-    <div
-        class="column"
-         draggable="true"
-         v-for="(list, index) in lists"
-         :key="index"
+  <div class="columns board">
+    <Sortable
+      class="column"
+      :items="lists">
 
-        :class="{'is-dropzone': list.dropzone}"
-        :index="index"
-        @dragstart="dragStart"
-        @dragenter="dragOver"
-        @dragend="dragEnd">
-
-      <div class="list">
-        <h4 class="header title is-4">{{ list.name }}</h4>
+      <div
+        class="list"
+        slot="item"
+        slot-scope="slot">
+        <h4 class="header title is-4">{{ slot.item.name }}</h4>
         <div class="body">
           <!--<div-->
-            <!--class="item"-->
-            <!--v-for="(item, index) in items"-->
-            <!--:key="index">-->
+          <!--class="item"-->
+          <!--v-for="(item, index) in items"-->
+          <!--:key="index">-->
 
-            <!--{{ item.name }}-->
+          <!--{{ item.name }}-->
           <!--</div>-->
           <div class="item">ITEM</div>
         </div>
       </div>
-    </div>
+    </Sortable>
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
+  import Sortable from './common/sortable/Sortable';
 
   export default Vue.extend({
     name: 'Board',
+    components: {
+      Sortable
+    },
     data() {
       return {
-        dragIndex: 0,
-        dropIndex: 0,
-        dragged: false,
         lists: [
           {name: 'TODO', dropzone: false},
           {name: 'Groceries', dropzone: false},
@@ -51,28 +47,7 @@
         ]
       };
     },
-    methods: {
-      dragStart(event: DragEvent) {
-        const element = event.target as HTMLElement;
-        this.dragIndex = Number(element.getAttribute('index'));
-        this.dragged = true;
-      },
-      dragOver(event: DragEvent) {
-        const element = event.target as HTMLElement;
-        this.dropIndex = Number(element.getAttribute('index'));
-        this.lists.forEach((list, index) => list.dropzone = index === this.dropIndex);
-      },
-      dragEnd(event: DragEvent) {
-        this.arraymove(this.lists, this.dragIndex, this.dropIndex)
-        this.dragged = false;
-        this.lists.forEach((list, index) => list.dropzone = false);
-      },
-      arraymove(arr: {}[], fromIndex: number, toIndex: number) {
-        const element = arr[fromIndex];
-        arr.splice(fromIndex, 1);
-        arr.splice(toIndex, 0, element);
-      }
-    }
+    methods: {}
   });
 </script>
 
@@ -81,23 +56,10 @@
     height: 100%;
     padding: 20px;
 
-    &.dragged {
-      .list {
-        pointer-events: none;
-      }
-    }
-
     .column {
-
-      &.is-dropzone {
-        background-color: red;
-      }
-
       .list {
         height: 100%;
         background-color: #e2e4e6;
-
-
 
         .header {
           padding: 10px;
@@ -107,8 +69,6 @@
           padding: 10px;
           margin: 10px;
           background: white;
-
-
         }
       }
     }
