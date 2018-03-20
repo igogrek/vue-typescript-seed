@@ -1,22 +1,29 @@
 <template>
   <div id="app">
-    <Header/>
-    <div class="view">
-      <router-view/>
+    <div class="columns">
+      <side-navigation></side-navigation>
+      <div class="column">
+        <Header/>
+        <div class="view">
+          <router-view/>
+        </div>
+      </div>
     </div>
-    <Footer/>
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import ButtonTest from './components/example/ButtonTest.vue';
+  import Header from './components/root/Header.vue';
+  import SideNavigation from './components/root/SideNavigation.vue';
 
   export default Vue.extend({
     name: 'App',
     components: {
-      ButtonTest
+      Header,
+      SideNavigation
     }
+    
   });
 </script>
 
