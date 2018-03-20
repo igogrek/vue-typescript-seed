@@ -12,6 +12,9 @@ export default new Vuex.Store({
     loading: true
   },
   mutations: {
+    [NAV_TOGGLED](state, toggled: boolean) {
+      state.navToggled = toggled;
+    },
     [SET_ITEMS](state, payload) {
       state.items = payload;
       state.loading = false;

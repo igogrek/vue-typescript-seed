@@ -5,6 +5,10 @@
 // Override bulma overrides
 @import './bulma-overrides';
 
+body, html {
+  height: 100%;
+}
+
 body {
   font-size: $base-font-size;
   background-color: $body-color;
@@ -19,8 +23,22 @@ body {
     font-weight: 500;
   }
 
+  &.is-size-14{
+    font-size: 14px;
+  }
+
   &.is-size-16{
     font-size: 16px;
+  }
+  
+  &.is-size-26{
+    font-size: 26px;
+  }
+}
+
+.columns {
+  &.is-full-height{
+    height: 100%;
   }
 }
 

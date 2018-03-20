@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="columns">
+    <div class="columns is-gapless is-full-height">
       <side-navigation></side-navigation>
       <div class="column">
         <Header/>
@@ -29,6 +29,10 @@
 
 <style lang="scss" scoped>
   @import './styles/variables';
+
+  #app{
+    height: 100%;
+  }
 
   .view {
     margin-top: $header-height;
