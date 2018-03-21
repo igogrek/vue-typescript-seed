@@ -3,26 +3,28 @@
     <div class="links-title">
       <h5 class="title is-uppercase is-size-16">Schnell links</h5>
     </div>
-    <div class="links-wrapper">
-      <a class="links-item is-yellow" href="#">
+    <div class="columns is-gapless no-margin">
+      <a class="column is-one-quarter links-item is-yellow" href="#">
         <img src="../assets/addPhone.svg">
         <span class="title is-uppercase is-5 is-size-16">Handy hinzufuegen</span>
       </a> 
-      <a class="links-item is-purple" href="#">
+      <a class="column is-one-quarter links-item is-purple" href="#">
         <img src="../assets/user-plus.svg">
         <span class="title is-uppercase is-5 is-size-16">Benutzer hinzufuegen</span>
       </a>  
-      <a class="links-item is-green" href="#">
+      <a class="column is-one-quarter links-item is-green" href="#">
         <img src="../assets/plug.svg">
         <span class="title is-uppercase is-5 is-size-16">device hinzufuegen</span>
       </a>  
-      <a class="links-item is-orange" href="#">
+      <a class="column is-one-quarter links-item is-orange" href="#">
         <img src="../assets/device-management.svg">
         <span class="title is-uppercase is-5 is-size-16">device management</span>
-      </a>  
-      <a class="links-item is-orange" href="#">
-        <img src="../assets/device-management.svg">
-        <span class="title is-uppercase is-5 is-size-16">device management</span>
+      </a>        
+    </div>
+    <div class="columns is-gapless no-margin">
+      <a class="column links-item is-magenta is-full-width" href="#">
+        <img src="../assets/comments.svg">
+        <span class="title is-uppercase is-5 is-size-16">Hilfe und Service</span>
       </a> 
     </div>
   </div>
@@ -41,20 +43,14 @@
   @import '../../styles/variables';
 
   .links{
-
-    margin: 20px;
+    
+    margin: 44px 20px 20px 20px;
     &-title{
       background-color:  $white;
       padding: 10px;
     }
 
-    &-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
     &-item{
-      width:238px;
       height: 230px;
       text-align: center;
       transition: all .3s;
@@ -87,6 +83,16 @@
       &.is-green {
         background-color: #1D7B74;
       }
+      &.is-magenta {
+        background-color: $magenta;
+      }
+      &.is-full-width {
+        width: 100%;
+      }
+    }
+
+    .no-margin {
+      margin: 0;
     }
   }
 
