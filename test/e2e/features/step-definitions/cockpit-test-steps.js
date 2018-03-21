@@ -6,5 +6,5 @@ Given('I open button test page', async () =>
     .url(client.globals.devServerURL)
     .waitForElementVisible('#app', 5000));
 
-    Then('linh is present', async () =>
+    Then('link is present', async () =>
     client.waitForElementVisible('.links links-item', 5000));
