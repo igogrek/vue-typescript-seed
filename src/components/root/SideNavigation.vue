@@ -9,6 +9,20 @@
           src="./assets/cockpit.svg">
         <span class="logo-text is-uppercase title is-5 is-size-16">Cockpit</span>
       </div>
+      <div class="side-navigation-links">
+        <router-link
+          to="/"
+          class="side-navigation-link">
+          <img src="./assets/cloud.svg">
+          <span>Welcome</span>
+        </router-link>
+        <router-link
+          to="/"
+          class="side-navigation-link">
+          <img src="">
+          <span>Home</span>
+        </router-link>
+      </div>
     </div>
   </transition>
 </template>
@@ -37,6 +51,25 @@
       height: 100%;
       width: 230px;
       color: $text-color;
+
+    &-links {
+
+    }
+
+    &-link {
+      align-items: center;
+      display: flex;
+      width: 100%;
+      height: 38px;
+      padding: 9px 15px;
+      border-bottom: 1px solid #CECECE;
+
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
   }
 
   .logo {
