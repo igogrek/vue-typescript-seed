@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="columns is-gapless is-full-height">
-      <side-navigation></side-navigation>
+      <side-navigation/>
       <div class="column">
         <Header/>
         <div class="view">
@@ -23,6 +23,7 @@
       Header,
       SideNavigation
     }
+
   });
 </script>
 

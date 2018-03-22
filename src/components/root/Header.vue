@@ -2,9 +2,9 @@
   <div class="level header">
     <div class="level-left header-content">
       <button
+        :class="{ 'is-closed': !isOpened }"
         class="header-button level-item"
-        @click="toggleNav"
-        :class="{ 'is-closed': !isOpened }">
+        @click="toggleNav">
         <img
           class="header-button-image is-small"
           src="./assets/caret-square-left.svg">
@@ -15,16 +15,19 @@
     </div>
     <div class="level-right header-content">
       <button class="header-button is-square">
-        <img class="header-button-image"
-             src="./assets/search.svg">
+        <img
+          class="header-button-image"
+          src="./assets/search.svg">
       </button>
       <button class="header-button is-square">
-        <img class="header-button-image"
-             src="./assets/plus-circle.svg">
+        <img
+          class="header-button-image"
+          src="./assets/plus-circle.svg">
       </button>
       <button class="header-button is-square">
-        <img class="header-button-image"
-             src="./assets/th.svg">
+        <img
+          class="header-button-image"
+          src="./assets/th.svg">
         <div class="menu">
           <a
             href="#"
@@ -54,8 +57,9 @@
       </button>
       <button class="header-button">
         <span class="title is-5 is-size-14">A.Fedorov</span>
-        <img class="header-button-image"
-             src="./assets/user-circle.svg">
+        <img
+          class="header-button-image"
+          src="./assets/user-circle.svg">
       </button>
     </div>
   </div>
@@ -93,7 +97,7 @@
     box-shadow: 0 1px 1px rgba(0,0,0,.1);
     margin-bottom: 0;
 
-    &-content{
+    &-content {
       height: 100%;
     }
 
@@ -111,34 +115,34 @@
       outline: none;
       transition: all .3s;
 
-      span{
+      span {
         margin: 0 5px 0 0;
       }
 
-       &-image {
-         width: 35px;
-         height: 28px;
+      &-image {
+        width: 35px;
+        height: 28px;
 
-          &.is-small {
-            height: 14px;
-            width: 17px;
-          }
-       }
+        &.is-small {
+          height: 14px;
+          width: 17px;
+        }
+      }
 
-       &:hover{
-         background-color: $hover-color;
-       }
+      &:hover {
+        background-color: $hover-color;
+      }
 
-       &.is-square {
-         width: 65px;
-       }
+      &.is-square {
+        width: 65px;
+      }
 
-       &.is-closed {
-         img {
-           // transition: all .1s;
-           transform: rotate(180deg);
-         }
-       }
+      &.is-closed {
+        img {
+          // transition: all .1s;
+          transform: rotate(180deg);
+        }
+      }
     }
 
     .menu {
@@ -148,7 +152,7 @@
       top: 62px;
       right: 30px;
       padding: 10px;
-      box-shadow: -3px 8px 16px rgba(0,0,0,.175);
+      box-shadow: -3px 8px 16px rgba(0, 0, 0, .175);
       max-width: 300px;
       z-index: 10;
 
@@ -170,6 +174,4 @@
       }
     }
   }
-
-
 </style>

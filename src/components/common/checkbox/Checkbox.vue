@@ -3,9 +3,9 @@
     class="checkbox"
     @click="toggleCheck">
     <img
+      v-if="checkedValue"
       class="check"
       src="./check.svg"
-      v-if="checkedValue"
     >
   </div>
 </template>
@@ -16,7 +16,10 @@
   export default Vue.extend({
     name: 'Checkbox',
     props: {
-      checked: Boolean
+      checked: {
+        type: Boolean,
+        default: false
+      }
     },
     computed: {
       checkedValue(): boolean {
