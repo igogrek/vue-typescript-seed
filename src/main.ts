@@ -6,7 +6,7 @@ import store from './store'
 // Global styles
 import './styles/styles.scss';
 
-import Checkbox from './components/common/Checkbox.vue';
+import Checkbox from './components/common/checkbox/Checkbox.vue';
 Vue.component('Checkbox', Checkbox);
 
 Vue.config.productionTip = false;

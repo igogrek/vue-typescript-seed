@@ -7,25 +7,25 @@
       <a class="column is-one-quarter links-item is-yellow" href="#">
         <img src="../assets/addPhone.svg">
         <span class="title is-uppercase is-5 is-size-16">Handy hinzufuegen</span>
-      </a> 
+      </a>
       <a class="column is-one-quarter links-item is-purple" href="#">
         <img src="../assets/user-plus.svg">
         <span class="title is-uppercase is-5 is-size-16">Benutzer hinzufuegen</span>
-      </a>  
+      </a>
       <a class="column is-one-quarter links-item is-green" href="#">
         <img src="../assets/plug.svg">
         <span class="title is-uppercase is-5 is-size-16">device hinzufuegen</span>
-      </a>  
+      </a>
       <a class="column is-one-quarter links-item is-orange" href="#">
         <img src="../assets/device-management.svg">
         <span class="title is-uppercase is-5 is-size-16">device management</span>
-      </a>        
+      </a>
     </div>
     <div class="columns is-gapless no-margin">
       <a class="column links-item is-magenta is-full-width" href="#">
         <img src="../assets/comments.svg">
         <span class="title is-uppercase is-5 is-size-16">Hilfe und Service</span>
-      </a> 
+      </a>
     </div>
   </div>
 </template>
@@ -34,8 +34,7 @@
   import Vue from 'vue';
 
   export default Vue.extend({
-    name: 'Cockpit',
-    
+    name: 'Cockpit'
   });
 </script>
 
@@ -43,7 +42,6 @@
   @import '../../styles/variables';
 
   .links{
-    
     margin: 44px 20px 20px 20px;
     &-title{
       background-color:  $white;
@@ -52,6 +50,7 @@
 
     &-item{
       height: 230px;
+      position: relative;
       text-align: center;
       transition: all .3s;
 

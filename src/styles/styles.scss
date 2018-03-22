@@ -7,6 +7,7 @@
 
 body, html {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -17,10 +18,14 @@ body {
 .title{
   &.is-6{
     font-weight: bold;
-  } 
+  }
 
   &.is-5{
     font-weight: 500;
+  }
+
+  &.is-size-12{
+    font-size: 12px;
   }
 
   &.is-size-14{
@@ -30,7 +35,7 @@ body {
   &.is-size-16{
     font-size: 16px;
   }
-  
+
   &.is-size-26{
     font-size: 26px;
   }
