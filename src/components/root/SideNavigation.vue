@@ -1,13 +1,16 @@
 <template>
-    <transition name="slide">
-      <div v-if="navClosed" 
-           class="column is-one-fifth side-navigation">
-           <div class="logo">
-             <img class="logo-image" src="./assets/cockpit.svg">
-             <span class="logo-text is-uppercase title is-5 is-size-16">Cockpit</span>
-           </div>
+  <transition name="slide">
+    <div
+      v-if="navClosed"
+      class="column is-one-fifth side-navigation">
+      <div class="logo">
+        <img
+          class="logo-image"
+          src="./assets/cockpit.svg">
+        <span class="logo-text is-uppercase title is-5 is-size-16">Cockpit</span>
       </div>
-    </transition>
+    </div>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -31,12 +34,14 @@
   .side-navigation {
       background-color: $nav-color;
       box-shadow: 0 0 5px rgba(0,0,0,.3);
+      height: 100%;
       width: 230px;
       color: $text-color;
   }
 
   .logo {
     display: block;
+    height: 100px;
     text-align: center;
     padding: 8px 0;
 

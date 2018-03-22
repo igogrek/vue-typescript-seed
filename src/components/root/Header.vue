@@ -1,11 +1,13 @@
 <template>
   <div class="level header">
     <div class="level-left header-content">
-        <button class="header-button level-item"
-              @click="toggleNav"
-              v-bind:class="{ 'is-closed': !isOpened }">
-        <img class="header-button-image is-small"
-             src="./assets/caret-square-left.svg">
+      <button
+        class="header-button level-item"
+        @click="toggleNav"
+        :class="{ 'is-closed': !isOpened }">
+        <img
+          class="header-button-image is-small"
+          src="./assets/caret-square-left.svg">
       </button>
       <div class="level-item">
         <h2 class="title is-size-26">Welcome</h2>
@@ -13,20 +15,46 @@
     </div>
     <div class="level-right header-content">
       <button class="header-button is-square">
-        <img class="header-button-image" 
+        <img class="header-button-image"
              src="./assets/search.svg">
       </button>
       <button class="header-button is-square">
-        <img class="header-button-image" 
+        <img class="header-button-image"
              src="./assets/plus-circle.svg">
       </button>
       <button class="header-button is-square">
-        <img class="header-button-image" 
+        <img class="header-button-image"
              src="./assets/th.svg">
+        <div class="menu">
+          <a
+            href="#"
+            class="menu-link">
+            <img
+              src="./assets/administration.svg"
+              alt="admin">
+            <span>Administration</span>
+          </a>
+          <a
+            href="#"
+            class="menu-link">
+            <img
+              src="./assets/cockpit.svg"
+              alt="admin">
+            <span>Cockpit</span>
+          </a>
+          <a
+            href="#"
+            class="menu-link">
+            <img
+              src="./assets/device-management-magenta.svg"
+              alt="admin">
+            <span class="title is-size-12">Device management</span>
+          </a>
+        </div>
       </button>
       <button class="header-button">
         <span class="title is-5 is-size-14">A.Fedorov</span>
-        <img class="header-button-image" 
+        <img class="header-button-image"
              src="./assets/user-circle.svg">
       </button>
     </div>
@@ -39,14 +67,14 @@
 
   export default Vue.extend({
     name: 'Header',
-    data: function() {
+    data() {
       return {
         isOpened: true
-      }
+      };
     },
     methods: {
       toggleNav() {
-        this.isOpened = ! this.isOpened;
+        this.isOpened = !this.isOpened;
         this.$store.commit(NAV_TOGGLED, this.isOpened);
       }
     }
@@ -110,6 +138,35 @@
            transform: rotate(180deg);
          }
        }
+    }
+
+    .menu {
+      display: flex;
+      background-color: $white;
+      position: absolute;
+      top: 62px;
+      right: 30px;
+      padding: 10px;
+      box-shadow: -3px 8px 16px rgba(0,0,0,.175);
+      max-width: 300px;
+      z-index: 10;
+
+      &-link {
+        padding: 5px;
+        width: 33%;
+        text-align: center;
+
+        img {
+
+          height: 36px;
+          width: 36px;
+        }
+
+        span {
+          display: block;
+          margin: 5px 0 0 0;
+        }
+      }
     }
   }
 

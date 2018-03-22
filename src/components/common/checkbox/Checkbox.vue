@@ -32,7 +32,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../../styles/variables';
+  @import '../../../styles/variables';
 
   $checkbox-size: 22px;
   $checkbox-background-color: #ededed;
