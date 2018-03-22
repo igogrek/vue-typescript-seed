@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="189px" viewBox="0 0 112 189" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>caret-up</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Shared" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-28.000000, -45.000000)" fill-rule="nonzero" fill="#535A59">
+            <g id="caret-up" transform="translate(84.000000, 139.500000) scale(-1, 1) rotate(90.000000) translate(-84.000000, -139.500000) translate(-10.500000, 83.500000)">
+                <path d="M175.54784,111.465441 L12.8584104,111.465441 C1.59323406,111.465441 -4.04820543,97.2565654 3.91733263,88.9467838 L85.2620472,4.08662647 C90.1998083,-1.06452794 98.2064417,-1.06452794 103.144203,4.08662647 L184.488917,88.9467838 C192.455088,97.2565654 186.813016,111.465441 175.54784,111.465441 Z" id="Shape" transform="translate(94.203265, 55.844351) scale(-1, -1) translate(-94.203265, -55.844351) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,5 +1,7 @@
 <template>
-  <transition name="slide">
+  <transition
+    name="slide"
+    appear>
     <div
       v-if="navClosed"
       class="column is-one-fifth side-navigation">
@@ -12,15 +14,26 @@
       <div class="side-navigation-links">
         <router-link
           to="/"
-          class="side-navigation-link">
+          class="side-navigation-link"
+          active-class="is-active">
           <img src="./assets/cloud.svg">
-          <span>Welcome</span>
+          <span class="title is-5 is-size-14">Welcome</span>
         </router-link>
         <router-link
-          to="/"
-          class="side-navigation-link">
-          <img src="">
-          <span>Home</span>
+          to="/home"
+          class="side-navigation-link"
+          active-class="is-active">
+          <img src="./assets/home.svg">
+          <span class="title is-5 is-size-14">Home</span>
+        </router-link>
+        <router-link
+          to="/groups"
+          class="side-navigation-link"
+          active-class="is-active">
+          <img
+            class="is-small"
+            src="./assets/caret-right.svg">
+          <span class="title is-5 is-size-14 is-uppercase">Groups</span>
         </router-link>
       </div>
     </div>
@@ -44,6 +57,8 @@
   @import '../../styles/variables';
 
   $logo-image-size: 45px;
+  $link-height: 38px;
+  $image-size: 16px;
 
   .side-navigation {
       background-color: $nav-color;
@@ -60,14 +75,61 @@
       align-items: center;
       display: flex;
       width: 100%;
-      height: 38px;
+      height: $link-height;
       padding: 9px 15px;
       border-bottom: 1px solid #CECECE;
-
+      position: relative;
+      transition: all .3s;
 
       img {
-        width: 16px;
-        height: 16px;
+        width: $image-size;
+        height: $image-size;
+        margin-right: 5px;
+
+        &.is-small {
+          width: 10px;
+          height: 7px;
+          margin-right: 11px;
+        }
+      }
+
+      span {
+        line-height: 16px;
+      }
+
+      &:before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-top: $link-height/2 solid transparent;
+        border-bottom: $link-height/2 solid transparent;
+        position: absolute;
+        left: 0;
+        border-left: 0 solid $magenta;
+        transition: all .3s;
+      }
+
+      &:hover:before {
+        border-left: 10px solid $magenta;
+      }
+
+      &.is-active {
+        background-color: $magenta;
+        width: calc(100% - 10px);
+        span {
+          color: $white;
+        }
+
+        &:after {
+          content: '';
+          width: 0;
+          height: 0;
+          border-top: $link-height/2 solid transparent;
+          border-bottom: $link-height/2 solid transparent;
+          position: absolute;
+          left: 100%;
+          border-left: 10px solid $magenta;
+        }
       }
     }
   }
