@@ -17,23 +17,63 @@
           class="side-navigation-link"
           active-class="is-active">
           <img src="./assets/cloud.svg">
-          <span class="title is-5 is-size-14">Welcome</span>
+          <span class="title is-5 is-size-16">Welcome</span>
         </router-link>
         <router-link
           to="/home"
           class="side-navigation-link"
           active-class="is-active">
           <img src="./assets/home.svg">
-          <span class="title is-5 is-size-14">Home</span>
+          <span class="title is-5 is-size-16">Home</span>
         </router-link>
         <router-link
           to="/groups"
           class="side-navigation-link"
           active-class="is-active">
           <img
+            @click="toggleSubMenu"
             class="is-small"
+            :class="{'is-open' : subMenuToggled }"
             src="./assets/caret-right.svg">
-          <span class="title is-5 is-size-14 is-uppercase">Groups</span>
+          <span class="title is-5 is-size-16 is-uppercase">Groups</span>
+        </router-link>
+        <div v-if="subMenuToggled">
+          <router-link
+            :to="{ name: 'Test', params: {id: item}}"
+            class="side-navigation-link is-child"
+            v-for="item in [1]"
+            :key="item"
+            active-class="is-active">
+            <img
+              @click="toggleChildMenu"
+              src="./assets/folder.svg">
+            <span class="title is-5 is-size-16">Test {{ item }}</span>
+          </router-link>
+          <div v-if="childMenuToggled">
+            <router-link
+              :to="{ name: 'Test', params: {id: item}}"
+              class="side-navigation-link is-child is-sub"
+              v-for="item in [2,3]"
+              :key="item"
+              active-class="is-active">
+              <img src="./assets/folder.svg">
+              <span class="title is-5 is-size-16">Device {{ item }}</span>
+            </router-link>
+          </div>
+        </div>
+        <router-link
+          to="/alarms"
+          class="side-navigation-link"
+          active-class="is-active">
+          <img src="./assets/bell.svg">
+          <span class="title is-5 is-size-16">Alarms</span>
+        </router-link>
+        <router-link
+          to="/data"
+          class="side-navigation-link"
+          active-class="is-active">
+          <img src="./assets/chart.svg">
+          <span class="title is-5 is-size-16">Data explorer</span>
         </router-link>
       </div>
     </div>
@@ -45,9 +85,25 @@
 
   export default Vue.extend({
     name: 'SideNavigation',
+    data() {
+      return {
+        subMenuToggled: false,
+        childMenuToggled: false
+      };
+    },
     computed: {
       navClosed(): boolean {
         return this.$store.state.navToggled;
+      }
+    },
+    methods: {
+      toggleChildMenu(event:any) {
+        event.preventDefault();
+        this.childMenuToggled = !this.childMenuToggled;
+      },
+      toggleSubMenu(event:any) {
+        event.preventDefault();
+        this.subMenuToggled = !this.subMenuToggled;
       }
     }
   });
@@ -91,10 +147,10 @@
           height: 7px;
           margin-right: 11px;
         }
-      }
 
-      span {
-        line-height: 16px;
+        &.is-open {
+          transform: rotate(90deg);
+        }
       }
 
       &:before {
@@ -113,22 +169,19 @@
         border-left: 10px solid $magenta;
       }
 
+      &.is-child {
+        padding-left: 38px;
+        border: none;
+
+        &.is-sub {
+          padding-left: 59px;
+        }
+      }
+
       &.is-active {
         background-color: $magenta;
-        width: calc(100% - 10px);
         span {
           color: $white;
-        }
-
-        &:after {
-          content: '';
-          width: 0;
-          height: 0;
-          border-top: $link-height/2 solid transparent;
-          border-bottom: $link-height/2 solid transparent;
-          position: absolute;
-          left: 100%;
-          border-left: 10px solid $magenta;
         }
       }
     }

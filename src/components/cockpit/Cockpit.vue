@@ -27,12 +27,6 @@
         <span class="title is-uppercase is-5 is-size-16">Hilfe und Service</span>
       </a>
     </div>
-    <div class="columns is-gapless no-margin">
-      <a class="column links-item is-magenta is-full-width" href="#">
-        <img src="../assets/comments.svg">
-        <span class="title is-uppercase is-5 is-size-16">Hilfe und Service</span>
-      </a>
-    </div>
   </div>
 </template>
 

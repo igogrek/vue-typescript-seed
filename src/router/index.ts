@@ -10,6 +10,11 @@ export default new Router({
       path: '/',
       name: 'Cockpit',
       component: Cockpit,
+    },
+    {
+      path: '/test/:id',
+      name: 'Test',
+      component: Cockpit,
     }
   ],
 });
