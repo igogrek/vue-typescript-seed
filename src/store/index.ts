@@ -1,29 +1,19 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import {actions} from "./modules/devices/actions";
+import {mutations} from "./mutation-types";
 
-import {DELETE_ITEM, EDIT_ITEM, SET_ITEMS, NAV_TOGGLED} from './mutation-types'
+const initialState = {
+  devices: [],
+  items: [],
+  navToggled: true,
+  loading: true
+};
 
-Vue.use(Vuex)
+export default {
+  state: {...initialState},
+  mutations,
+  actions,
+}
 
-export default new Vuex.Store({
-  state: {
-    items: [],
-    navToggled: true,
-    loading: true
-  },
-  mutations: {
-    [NAV_TOGGLED](state, toggled: boolean) {
-      state.navToggled = toggled;
-    },
-    [SET_ITEMS](state, payload) {
-      state.items = payload;
-      state.loading = false;
-    },
-    [DELETE_ITEM](state, index: number) {
-      state.items.splice(index, 1)
-    },
-    [EDIT_ITEM](state, payload) {
-      Vue.set(state.items, payload.index, payload.item)
-    },
-  },
-})
+
+
+

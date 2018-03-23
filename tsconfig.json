@@ -5,6 +5,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "strict": true,
+    "noImplicitAny": false,
     "sourceMap": true,
     "lib": [
       "dom",

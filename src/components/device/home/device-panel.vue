@@ -2,7 +2,7 @@
   <section class="device-panel">
     <box-component class="alarm-box" title="ACTIVE, CRITICAL ALARMS">
       <div class="box-row">
-        <img class="icon" src="../assets/alert-idle.svg"/>
+        <img class="icon" src="../../assets/alert-idle.svg"/>
         <span>No alarms to display</span>
       </div>
 
@@ -23,7 +23,7 @@
 <script lang="ts">
 
   import Vue from 'vue'
-  import BoxComponent from '../common/box/box-component.vue'
+  import BoxComponent from '../../common/box/box-component.vue'
 
   declare const require: (moduleId: string) => any;
   const Vue2Leaflet = require("vue2-leaflet");

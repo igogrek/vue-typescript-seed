@@ -18,6 +18,11 @@
   import Header from './components/root/Header.vue';
   import SideNavigation from './components/root/SideNavigation.vue';
 
+  declare const require: (moduleId: string) => any;
+  const MaterialComponents = require("vue-material");
+
+  Vue.use(MaterialComponents.default);
+
   export default Vue.extend({
     name: 'App',
     components: {

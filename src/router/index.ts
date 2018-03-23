@@ -4,6 +4,9 @@ import Cockpit from '../components/cockpit/Cockpit.vue';
 import DataExplorer from '../components/cockpit/DataExplorer.vue';
 import Admin from '../components/device/device-panel.vue';
 
+import DeviceHome from '../components/device/home/device-panel.vue';
+import DeviceList from '../components/device/list/device-list.vue';
+
 Vue.use(Router);
 
 export default new Router({
@@ -17,12 +20,15 @@ export default new Router({
       path: '/data-explorer',
       name: 'DataExplorer',
       component: DataExplorer,
+      path: '/device/home',
+      name: 'DeviceHome',
+      component: DeviceHome,
     },
     {
-      path: '/device/management',
-      name: 'Admin',
-      component: Admin,
-    },
+      path: '/device/list',
+      name: 'DeviceList',
+      component: DeviceList,
+    }
 
   ],
 });
