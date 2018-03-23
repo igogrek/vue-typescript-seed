@@ -14,6 +14,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
+  import BoxComponent from './components/common/box/box-component.vue';
   import Header from './components/root/Header.vue';
   import SideNavigation from './components/root/SideNavigation.vue';
 
@@ -21,7 +22,9 @@
     name: 'App',
     components: {
       Header,
-      SideNavigation
+      SideNavigation,
+      'box-component': BoxComponent,
+
     }
 
   });
@@ -30,12 +33,14 @@
 <style lang="scss" scoped>
   @import './styles/variables';
 
-  #app{
+  #app {
     height: 100%;
   }
 
   .view {
-    margin-top: 0;
+    margin-top: $header-height;
+    padding-left: $border-padding;
+    padding-right: $border-padding;
     overflow-y: auto;
     height: 100%;
     padding-bottom: 80px;
