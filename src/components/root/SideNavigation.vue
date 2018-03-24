@@ -20,7 +20,7 @@
     name: 'SideNavigation',
     computed: {
       navClosed(): boolean {
-        return this.$store.state.navToggled;
+        return this.$store.state.nav.navToggled;
       }
     }
   });

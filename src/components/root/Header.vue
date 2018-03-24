@@ -75,7 +75,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {NAV_TOGGLED} from "../../store/nav-types";
+  import {NAV_TOGGLED} from "../../store/modules/types/nav-types";
 
   export default Vue.extend({
     name: 'Header',

@@ -1,5 +1,5 @@
 import Vue from "vue";
-import {DELETE_ITEM, EDIT_ITEM, NAV_TOGGLED, SET_ITEMS} from "../../nav-types";
+import {DELETE_ITEM, EDIT_ITEM, NAV_TOGGLED, SET_ITEMS} from "../types/nav-types";
 
 
 export const mutations = {

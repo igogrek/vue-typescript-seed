@@ -1,9 +1,14 @@
-import {mutations} from "../nav/mutations";
+import {mutations} from "./mutations";
 import {actions} from "./actions";
 import {getters} from "./getters";
+import {DeviceListNode} from "../../../components/dto/DeviceListNode";
 
-const initialState = {
-  devices: [],
+export interface DeviceState {
+  devices: Array<DeviceListNode>;
+}
+
+const initialState: DeviceState = {
+  devices: []
 };
 
 export default {
