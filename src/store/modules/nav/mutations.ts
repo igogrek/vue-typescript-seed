@@ -1,6 +1,5 @@
 import Vue from "vue";
-import {FETCH_DEVICES} from "./modules/devices/device-types";
-import {DELETE_ITEM, EDIT_ITEM, NAV_TOGGLED, SET_ITEMS} from "./nav-types";
+import {DELETE_ITEM, EDIT_ITEM, NAV_TOGGLED, SET_ITEMS} from "../../nav-types";
 
 
 export const mutations = {
@@ -17,10 +16,4 @@ export const mutations = {
   [EDIT_ITEM](state, payload) {
     Vue.set(state.items, payload.index, payload.item)
   },
-
-
-
-  [FETCH_DEVICES](state, devices) {
-    state.devices = devices;
-  }
 };

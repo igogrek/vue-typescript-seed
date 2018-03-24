@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {FETCH_DEVICES} from "./device-types";
+import {FETCH_DEVICES} from "../../device-types";
 
 const API_PATH: string = 'https://evgeniiray.cumulocity.com/';
 const DEVICE_PATH: string = `${API_PATH}inventory/managedObjects`;

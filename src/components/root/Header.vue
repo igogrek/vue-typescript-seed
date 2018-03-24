@@ -75,7 +75,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {NAV_TOGGLED} from '../../store/mutation-types';
+  import {NAV_TOGGLED} from "../../store/nav-types";
 
   export default Vue.extend({
     name: 'Header',
@@ -101,16 +101,16 @@
   @import '../../styles/variables';
 
   $header-height: 60px;
-  $box-shadow: -3px 8px 16px rgba(0,0,0,.175);
+  $box-shadow: -3px 8px 16px rgba(0, 0, 0, .175);
   $hover-color: rgba(73, 89, 91, 0.01);
 
   .header {
     background-color: $white;
     height: $header-height;
     margin-bottom: 0;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 
-    &-content{
+    &-content {
       height: 100%;
     }
 
@@ -127,37 +127,37 @@
       outline: none;
       transition: all .3s;
 
-      span{
+      span {
         margin: 0 5px 0 0;
       }
 
-       &-image {
-         width: 35px;
-         height: 28px;
+      &-image {
+        width: 35px;
+        height: 28px;
 
-          &.is-small {
-            height: 14px;
-            width: 17px;
-          }
-       }
+        &.is-small {
+          height: 14px;
+          width: 17px;
+        }
+      }
 
-       &:hover{
-         background-color: $hover-color;
-       }
+      &:hover {
+        background-color: $hover-color;
+      }
 
-       &.is-active {
-         box-shadow: 0px -4px 16px rgba(0,0,0,.175);
-       }
+      &.is-active {
+        box-shadow: 0px -4px 16px rgba(0, 0, 0, .175);
+      }
 
-       &.is-square {
-         width: 65px;
-       }
+      &.is-square {
+        width: 65px;
+      }
 
-       &.is-closed {
-         img {
-           transform: rotate(180deg);
-         }
-       }
+      &.is-closed {
+        img {
+          transform: rotate(180deg);
+        }
+      }
     }
 
     .menu {

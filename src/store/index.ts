@@ -1,19 +1,19 @@
-import {actions} from "./modules/devices/actions";
-import {mutations} from "./mutation-types";
+declare let process: any;
 
-const initialState = {
-  devices: [],
-  items: [],
-  navToggled: true,
-  loading: true
-};
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-export default {
-  state: {...initialState},
-  mutations,
-  actions,
-}
+import devices from './modules/devices'
+import nav from './modules/nav'
 
+Vue.use(Vuex);
+
+export default new Vuex.Store({
+  modules: {
+    devices,
+    nav,
+  }
+})
 
 
 
