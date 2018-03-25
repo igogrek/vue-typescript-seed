@@ -100,7 +100,6 @@
   @import '../../styles/variables';
 
   $header-height: 60px;
-  $box-shadow: -3px 8px 16px rgba(0,0,0,.175);
   $hover-color: rgba(73, 89, 91, 0.01);
 
   .header {

@@ -1,4 +1,4 @@
-export const SET_ITEMS = 'SET_ITEMS';
-export const EDIT_ITEM = 'EDIT_ITEM';
-export const DELETE_ITEM = 'DELETE_ITEM';
+export const GET_ALARMS = 'GET_ALARMS';
+export const SET_ALARMS = 'SET_ALARMS';
+export const FETCH_ALARMS = 'FETCH_ALARMS';
 export const NAV_TOGGLED = 'NAV_TOGGLED';

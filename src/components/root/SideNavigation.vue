@@ -87,8 +87,8 @@
     name: 'SideNavigation',
     data() {
       return {
-        subMenuToggled: false,
-        childMenuToggled: false
+        subMenuToggled: true,
+        childMenuToggled: true
       };
     },
     computed: {
