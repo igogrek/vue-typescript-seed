@@ -1,8 +1,6 @@
-Feature: Button Test Feature
+Feature: Test Feature
 
-  Scenario: Opening Button Test Page
+  Scenario: Opening Cockpit 
 
-    Given I open button test page
-    Then test button is present
-    And button text is "Test Button"
-    And and button is green
+    Given I open start page
+    Then link is present
