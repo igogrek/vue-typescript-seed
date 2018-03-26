@@ -1,9 +1,27 @@
 <template>
   <div class="data-explorer columns">
+    <link
+      rel="stylesheet"
+      href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
     <div class="column">
       <div class="card is-left">
         <div class="card-header">
-          Test
+          <div class="dates">
+            FROM
+            <b-datepicker
+              v-model="dateFrom"
+              @input="updateChart()"/>
+            <b-timepicker
+              v-model="dateFrom"
+              @input="updateChart()"/>
+            TO
+            <b-datepicker
+              v-model="dateTo"
+              @input="updateChart()"/>
+            <b-timepicker
+              v-model="dateTo"
+              @input="updateChart()"/>
+          </div>
         </div>
         <div id="chart-container"></div>
       </div>
@@ -16,10 +34,6 @@
         <div
           class="data-toggle"
           v-for="(point, index) of dataPoints">
-          <!--<Checkbox-->
-          <!--:checked="point.enabled"-->
-          <!--@update:checked="toggleSeries(point, index)"-->
-          <!--class="checkbox"/>-->
           <b-switch
             v-model="point.enabled"
             @input="toggleSeries(point, index)"
@@ -54,15 +68,18 @@
   }
 
   interface IData {
-    chart: ChartObject | null
-    axis: number
-    dataPoints: IDataPoint[]
+    chart: ChartObject | null;
+    axis: number;
+    dateFrom: Date;
+    dateTo: Date;
+    dataPoints: IDataPoint[];
+    isUpdated: Boolean;
   }
 
   interface IDataPoint {
     name: string;
     id: string;
-    enabled: Boolean
+    enabled: Boolean;
   }
 
   axios.defaults.headers.get.auth = 'Basic YXJ0dXJfZmpvZG9yb3ZAbWFpbC5ydToxQXNzLTRvbGUy';
@@ -72,6 +89,9 @@
       return {
         chart: null,
         axis: 0,
+        dateFrom: new Date('2018-03-18T16:35:00'),
+        dateTo: new Date('2018-03-18T23:07:00'),
+        isUpdated: false,
         dataPoints: [{
           name: 'c8y_TemperatureMeasurement.T',
           id: '10532',
@@ -80,79 +100,17 @@
           name: 'c8y_SignalStrength.rssi',
           id: '10300',
           enabled: true
-        }, {
-          name: 'c8y_Temperature.T',
-          id: '10551',
-          enabled: true
         }]
       };
     },
     mounted() {
-      const theme = {
-        colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066',
-          '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
-        tooltip: {
-          borderWidth: 0,
-          backgroundColor: 'rgba(219,219,216,0.8)',
-          shadow: false
-        },
-        title: {
-          text: '',
-          style: {
-            display: 'none'
-          }
-        },
-        legend: {
-          itemStyle: {
-            fontWeight: 'bold',
-            fontSize: '13px'
-          }
-        },
-        yAxis: {
-          gridLineWidth: 0
-        },
-        xAxis: {
-          gridLineWidth: 0,
-          labels: {
-            style: {
-              fontSize: '12px'
-            }
-          }
-        },
-        background2: '#F0F0EA'
-      };
-
-      Highcharts.setOptions(theme);
-
-      this.chart = Highcharts.chart('chart-container', {
-        chart: {
-          type: 'line',
-          zoomType: 'x',
-          panning: true
-        },
-        xAxis: {
-          type: 'datetime'
-        },
-        yAxis: [],
-        plotOptions: {
-          line: {
-            enableMouseTracking: true,
-            marker: {
-              enabled: false
-            }
-          }
-        },
-        legend: {
-          enabled: false
-        },
-        series: []
-      });
-
-      this.dataPoints.forEach(point => this.getData(point.name, point.id));
+      this.createChart();
+      this.setChartData();
     },
     methods: {
       getData(seriesName: string, sourceId: string) {
-        axios.get<IDataResponse>(`https://arturfedorov.cumulocity.com/measurement/measurements/series?aggregationType=HOURLY&dateFrom=2018-03-16T18:00:00%2B03:00&dateTo=2018-03-19T01:00:00%2B03:00&pageSize=1440&revert=true&series=${seriesName}&source=${sourceId}`)
+        const URL = 'https://arturfedorov.cumulocity.com/measurement/measurements/series';
+        axios.get<IDataResponse>(`${URL}?aggregationType=MINUTELY&dateFrom=${this.dateFrom.toISOString().slice(0, 19)}%2B03:00&dateTo=${this.dateTo.toISOString().slice(0, 19)}%2B03:00&pageSize=1440&revert=true&series=${seriesName}&source=${sourceId}`)
           .then(response => {
             if (this.chart) {
               const dateKeys = Object.keys(response.data.values);
@@ -164,7 +122,6 @@
                   data: [] as any[],
                   yAxis: this.axis
                 };
-                this.axis += 1;
 
                 dateKeys.forEach(dateKey => {
                   series.data.push([new Date(dateKey).getTime(), response.data.values[dateKey][0].min]);
@@ -176,13 +133,16 @@
                   },
                   opposite: false
                 };
-                if (this.axis > 1) {
+                if (this.axis > 0) {
                   axis.opposite = true;
                 }
 
                 this.chart.addAxis(axis);
+                this.axis += 1;
+
                 this.chart.addSeries(series);
               }
+              this.isUpdated = false;
             }
           });
       },
@@ -191,6 +151,80 @@
           this.chart!.series[index].hide();
         } else {
           this.chart!.series[index].show();
+        }
+      },
+      createChart() {
+        const theme = {
+          colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066',
+            '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+          tooltip: {
+            borderWidth: 0,
+            backgroundColor: 'rgba(219,219,216,0.8)',
+            shadow: false
+          },
+          title: {
+            text: '',
+            style: {
+              display: 'none'
+            }
+          },
+          legend: {
+            itemStyle: {
+              fontWeight: 'bold',
+              fontSize: '13px'
+            }
+          },
+          yAxis: {
+            gridLineWidth: 0
+          },
+          xAxis: {
+            gridLineWidth: 0,
+            labels: {
+              style: {
+                fontSize: '12px'
+              }
+            }
+          },
+          background2: '#F0F0EA'
+        };
+
+        Highcharts.setOptions(theme);
+
+        this.chart = Highcharts.chart('chart-container', {
+          chart: {
+            type: 'line',
+            zoomType: 'x',
+            panning: true
+          },
+          xAxis: {
+            type: 'datetime'
+          },
+          yAxis: [],
+          plotOptions: {
+            line: {
+              enableMouseTracking: true,
+              marker: {
+                enabled: false
+              }
+            }
+          },
+          legend: {
+            enabled: false
+          },
+          series: []
+        });
+      },
+      setChartData() {
+        this.dataPoints.forEach(point => this.getData(point.name, point.id));
+      },
+      updateChart() {
+        if (!this.isUpdated) {
+          this.isUpdated = true;
+          this.chart!.destroy();
+          this.axis = 0;
+
+          this.createChart();
+          this.setChartData();
         }
       }
     }
@@ -236,6 +270,10 @@
         flex-flow: row nowrap;
         padding: 15px;
         border-bottom: 1px solid rgba(0, 0, 0, .05);
+
+        .dates {
+
+        }
       }
 
       .data-toggle {
