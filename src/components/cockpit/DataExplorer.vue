@@ -1,5 +1,30 @@
 <template>
-  <div id="container" style="min-width: 310px; height: 400px; margin: 40px"></div>
+  <div class="data-explorer columns">
+    <div class="column">
+      <div class="card is-left">
+        <div class="card-header">
+          Test
+        </div>
+        <div id="chart-container"></div>
+      </div>
+    </div>
+    <div class="column is-one-quarter">
+      <div class="card is-right">
+        <div class="card-header">
+          <span class="card-title h4">Data points</span>
+        </div>
+        <div
+          class="data-toggle"
+          v-for="(point, index) of dataPoints">
+          <Checkbox
+                :checked="point.enabled"
+                @update:checked="toggleSeries(point, index)"
+                class="checkbox"/>
+          {{ point.name }}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,10 +50,13 @@
   interface IData {
     chart: ChartObject | null
     axis: number
-    dataPoints: {
-      name: string;
-      id: string;
-    }[]
+    dataPoints: IDataPoint[]
+  }
+
+  interface IDataPoint {
+    name: string;
+    id: string;
+    enabled: Boolean
   }
 
   axios.defaults.headers.get.auth = 'Basic YXJ0dXJfZmpvZG9yb3ZAbWFpbC5ydToxQXNzLTRvbGUy';
@@ -40,24 +68,33 @@
         axis: 0,
         dataPoints: [{
           name: 'c8y_TemperatureMeasurement.T',
-          id: '10532'
+          id: '10532',
+          enabled: true
         }, {
           name: 'c8y_SignalStrength.rssi',
-          id: '10300'
+          id: '10300',
+          enabled: true
         }, {
           name: 'c8y_Temperature.T',
-          id: '10551'
+          id: '10551',
+          enabled: true
         }]
       };
     },
     mounted() {
       const theme = {
-        colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee', '#55BF3B',
-          '#DF5353', '#7798BF', '#aaeeee'],
+        colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066',
+          '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
         tooltip: {
           borderWidth: 0,
           backgroundColor: 'rgba(219,219,216,0.8)',
           shadow: false
+        },
+        title: {
+          text: '',
+          style: {
+            display: 'none'
+          }
         },
         legend: {
           itemStyle: {
@@ -81,7 +118,7 @@
 
       Highcharts.setOptions(theme);
 
-      this.chart = Highcharts.chart('container', {
+      this.chart = Highcharts.chart('chart-container', {
         chart: {
           type: 'line',
           zoomType: 'x',
@@ -100,9 +137,7 @@
           }
         },
         legend: {
-          align: 'left',
-          verticalAlign: 'top',
-          borderWidth: 0
+          enabled: false
         },
         series: []
       });
@@ -144,11 +179,69 @@
               }
             }
           });
+      },
+      toggleSeries(point: IDataPoint, index: number) {
+        if (point.enabled) {
+          this.chart!.series[index].hide();
+        } else {
+          this.chart!.series[index].show();
+        }
+        point.enabled = !point.enabled;
       }
     }
   });
 </script>
 
 <style lang="scss" scoped>
+  .data-explorer {
+    height: 100%;
 
+    color: #333;
+
+    #chart-container {
+      height: 400px;
+    }
+
+    .card {
+      position: relative;
+      margin-top: 30px;
+      background-color: #fff;
+      -webkit-box-shadow: 0 1px 1px 0.003em rgba(0, 0, 0, .16);
+      box-shadow: 0 1px 1px 0.003em rgba(0, 0, 0, .16);
+
+      &.is-left {
+        margin-left: 30px;
+      }
+
+      &.is-right {
+        margin-right: 30px;
+      }
+
+      &-header {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+        padding: 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, .05);
+      }
+
+      .data-toggle {
+        padding: 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, .05);
+
+        .checkbox {
+          top: 5px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
 </style>
