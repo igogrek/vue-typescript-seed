@@ -7,20 +7,24 @@
       <div class="card is-left">
         <div class="card-header">
           <div class="dates">
-            FROM
+            <span>FROM</span>
             <b-datepicker
               v-model="dateFrom"
-              @input="updateChart()"/>
+              @input="updateChart()"
+              class="inline-block"/>
             <b-timepicker
               v-model="dateFrom"
-              @input="updateChart()"/>
-            TO
+              @input="updateChart()"
+              class="inline-block"/>
+            <span>TO</span>
             <b-datepicker
               v-model="dateTo"
-              @input="updateChart()"/>
+              @input="updateChart()"
+              class="inline-block"/>
             <b-timepicker
               v-model="dateTo"
-              @input="updateChart()"/>
+              @input="updateChart()"
+              class="inline-block"/>
           </div>
         </div>
         <div id="chart-container"></div>
@@ -272,7 +276,15 @@
         border-bottom: 1px solid rgba(0, 0, 0, .05);
 
         .dates {
+          span {
+            top: 7px;
+            position: relative;
+            display: inline-block;
+          }
 
+          .inline-block {
+            display: inline-block;
+          }
         }
       }
 
