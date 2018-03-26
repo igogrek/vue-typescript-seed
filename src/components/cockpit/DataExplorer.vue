@@ -16,10 +16,16 @@
         <div
           class="data-toggle"
           v-for="(point, index) of dataPoints">
-          <Checkbox
-                :checked="point.enabled"
-                @update:checked="toggleSeries(point, index)"
-                class="checkbox"/>
+          <!--<Checkbox-->
+          <!--:checked="point.enabled"-->
+          <!--@update:checked="toggleSeries(point, index)"-->
+          <!--class="checkbox"/>-->
+          <b-switch
+            v-model="point.enabled"
+            @input="toggleSeries(point, index)"
+            class="switch">
+          </b-switch>
+
           {{ point.name }}
         </div>
       </div>
@@ -181,12 +187,11 @@
           });
       },
       toggleSeries(point: IDataPoint, index: number) {
-        if (point.enabled) {
+        if (!point.enabled) {
           this.chart!.series[index].hide();
         } else {
           this.chart!.series[index].show();
         }
-        point.enabled = !point.enabled;
       }
     }
   });
@@ -237,9 +242,13 @@
         padding: 15px;
         border-bottom: 1px solid rgba(0, 0, 0, .05);
 
-        .checkbox {
-          top: 5px;
-          margin-right: 10px;
+        .switch {
+          position: relative;
+          top: 6px;
+
+          /deep/ input[type=checkbox]:checked + .check {
+            background-color: #27B3CE;
+          }
         }
       }
     }
