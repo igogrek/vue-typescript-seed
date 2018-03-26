@@ -25,6 +25,10 @@
   interface IData {
     chart: ChartObject | null
     axis: number
+    dataPoints: {
+      name: string;
+      id: string;
+    }[]
   }
 
   axios.defaults.headers.get.auth = 'Basic YXJ0dXJfZmpvZG9yb3ZAbWFpbC5ydToxQXNzLTRvbGUy';
@@ -33,22 +37,23 @@
     data(): IData {
       return {
         chart: null,
-        axis: 0
+        axis: 0,
+        dataPoints: [{
+          name: 'c8y_TemperatureMeasurement.T',
+          id: '10532'
+        }, {
+          name: 'c8y_SignalStrength.rssi',
+          id: '10300'
+        }, {
+          name: 'c8y_Temperature.T',
+          id: '10551'
+        }]
       };
     },
     mounted() {
-      this.getData('c8y_TemperatureMeasurement.T', '10532');
-      this.getData('c8y_SignalStrength.rssi', '10300');
-      this.getData('c8y_Temperature.T', '10551');
-
       const theme = {
         colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee', '#55BF3B',
           '#DF5353', '#7798BF', '#aaeeee'],
-        chart: {
-          style: {
-            fontFamily: 'Dosis, sans-serif'
-          }
-        },
         tooltip: {
           borderWidth: 0,
           backgroundColor: 'rgba(219,219,216,0.8)',
@@ -101,6 +106,8 @@
         },
         series: []
       });
+
+      this.dataPoints.forEach(point => this.getData(point.name, point.id));
     },
     methods: {
       getData(seriesName: string, sourceId: string) {
@@ -134,7 +141,6 @@
 
                 this.chart.addAxis(axis);
                 this.chart.addSeries(series);
-
               }
             }
           });
