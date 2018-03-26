@@ -6,4 +6,11 @@ export interface IAlarm {
   line: string;
   time:Date;
   type:string;
+  source: IAlarmSource,
+  isOpen: boolean
+}
+
+export interface  IAlarmSource {
+  id: string,
+  name: string
 }

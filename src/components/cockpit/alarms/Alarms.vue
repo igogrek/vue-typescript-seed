@@ -30,10 +30,41 @@
         <div class="alarm-header">
           <div
             class="alarm-image"
-            :class="{'is-major': alarm.severity === 'MAJOR'}">
+            :class="severity[alarm.severity]">
             <span class="title is-size-26 is-6">!</span>
           </div>
           <span class="title is-uppercase is-5 is-size-12">{{ alarm.severity }}</span>
+        </div>
+        <div
+          class="alarm-body"
+          :class = "{'is-open' : alarm.isOpen }">
+          <div class="level is-no-margin alarm-level">
+            <div class="level-left">
+              <span
+                class="title is-size-14 is-6 alarm-icon"
+                :class="severity[alarm.severity]">!</span>
+              <span class="title is-5 is-size-14">{{ alarm.text }}</span>
+            </div>
+            <div class="level-right">
+              <img
+                @click="editAlarm(alarm, 'isOpen', !alarm.isOpen)"
+                :class = "{'is-open' : alarm.isOpen }"
+                class="alarm-button"
+                src="../../assets/angle-down.svg">
+            </div>
+          </div>
+          <div class="level is-no-margin alarm-level">
+            <div class="level-left">
+              <img
+                class="alarm-icon is-transparent"
+                src="../../root/assets/bell.svg">
+              <span class="title is-5 is-size-14 is-no-margin">{{ new Date(alarm.time).toUTCString() }}</span>
+              <span class="title is-5 is-size-14 is-no-margin"> - {{ alarm.source.name }}</span>
+            </div>
+          </div>
+          <div class="level">
+            Status:
+          </div>
         </div>
       </div>
     </div>
@@ -44,11 +75,19 @@
   import Vue from 'vue';
   import axios from 'axios';
   import {IAlarm} from '../../../shared/interfaces/IAlarm';
-  import {SET_ALARMS} from '../../../store/mutation-types';
+  import {SET_ALARMS, EDIT_ALARM_OPEN} from '../../../store/mutation-types';
 
   export default Vue.extend({
     name: 'Alarms',
-
+    data() {
+      return {
+        severity: {
+          MAJOR: 'is-major',
+          MINOR: 'is-minor',
+          WARNING: 'is-warning'
+        }
+      };
+    },
     computed: {
       alarms() : IAlarm[] {
         return this.$store.state.alarms;
@@ -65,6 +104,11 @@
         .then(response => {
           this.$store.commit(SET_ALARMS, response.data.alarms);
         });
+    },
+    methods: {
+      editAlarm(alarm:IAlarm, index: string, item: boolean) {
+        this.$store.commit(EDIT_ALARM_OPEN, {alarm, index, item});
+      }
     }
   });
 </script>
@@ -76,6 +120,9 @@
   $padding: 30px;
   $critical: #D51022;
   $major: #FD8024;
+  $warning: #5FC0DD;
+  $minor: #FCBF2D;
+  $icon-height: 20px;
 
   .filters {
     border-top: 1px solid $border;
@@ -120,6 +167,29 @@
       &-header {
         display: flex;
         align-items: center;
+        border-bottom: 1px solid $border;
+      }
+
+      &-body {
+        height: 62px;
+        overflow: hidden;
+        transition: height .3s;
+
+        &.is-open {
+          height: 100px;
+        }
+      }
+
+      &-level {
+        padding: 8px 15px 0 15px;
+      }
+
+      &-button {
+        cursor: pointer;
+
+        &.is-open {
+          transform: rotate(180deg);
+        }
       }
 
       &-image {
@@ -130,13 +200,41 @@
         text-align: center;
         margin-right: 10px;
 
-        &.is-major {
-          background-color: $major;
-        }
-
         span {
           color: $white;
         }
+      }
+
+      &-icon {
+        background-color: $major;
+        line-height: $icon-height;
+        height: $icon-height;
+        width: $icon-height;
+        border-radius: 50%;
+        color: $white;
+        vertical-align: middle;
+        text-align: center;
+        margin: 0 8px 0 0;
+
+        &.is-transparent {
+          background-color: transparent;
+        }
+      }
+
+      .is-no-margin {
+        margin: 0;
+      }
+
+      .is-major {
+        background-color: $major;
+      }
+
+      .is-minor {
+        background-color: $minor;
+      }
+
+      .is-warning {
+        background-color: $warning;
       }
     }
   }
