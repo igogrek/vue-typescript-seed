@@ -1,0 +1,16 @@
+export interface DeviceListNode {
+  id: number
+  name: string
+  connection: ConnectionStatus
+  model: string
+  serialNumber: string
+  regTime:string
+  imei:string
+
+
+}
+
+export enum ConnectionStatus {
+  CONNECTED,
+  DISCONNECTED
+}

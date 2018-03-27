@@ -45,6 +45,7 @@
 
   export default Vue.extend({
     name: 'Cockpit'
+
   });
 </script>
 
@@ -52,6 +53,7 @@
   @import '../../styles/variables';
 
   .links{
+
     margin: 44px 20px 20px 20px;
     &-title{
       background-color:  $white;

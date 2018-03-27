@@ -2,9 +2,9 @@
   <div class="level header">
     <div class="level-left header-content">
       <button
+        :class="{ 'is-closed': !isOpened }"
         class="header-button level-item"
-        @click="toggleNav"
-        :class="{ 'is-closed': !isOpened }">
+        @click="toggleNav">
         <img
           class="header-button-image is-small"
           src="./assets/caret-square-left.svg">
@@ -15,8 +15,9 @@
     </div>
     <div class="level-right header-content">
       <button class="header-button is-square">
-        <img class="header-button-image"
-             src="./assets/search.svg">
+        <img
+          class="header-button-image"
+          src="./assets/search.svg">
       </button>
       <button class="header-button is-square">
         <img
@@ -74,7 +75,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {NAV_TOGGLED} from '../../store/mutation-types';
+  import {NAV_TOGGLED} from '../../store/modules/types/nav-types';
 
   export default Vue.extend({
     name: 'Header',
@@ -100,15 +101,16 @@
   @import '../../styles/variables';
 
   $header-height: 60px;
+  $box-shadow: -3px 8px 16px rgba(0, 0, 0, .175);
   $hover-color: rgba(73, 89, 91, 0.01);
 
   .header {
     background-color: $white;
     height: $header-height;
     margin-bottom: 0;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 
-    &-content{
+    &-content {
       height: 100%;
     }
 
@@ -117,7 +119,6 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      height: inherit;
       border: none;
       border-right: 1px solid $body-color;
       border-left: 1px solid $body-color;
@@ -126,37 +127,37 @@
       outline: none;
       transition: all .3s;
 
-      span{
+      span {
         margin: 0 5px 0 0;
       }
 
-       &-image {
-         width: 35px;
-         height: 28px;
+      &-image {
+        width: 35px;
+        height: 28px;
 
-          &.is-small {
-            height: 14px;
-            width: 17px;
-          }
-       }
+        &.is-small {
+          height: 14px;
+          width: 17px;
+        }
+      }
 
-       &:hover{
-         background-color: $hover-color;
-       }
+      &:hover {
+        background-color: $hover-color;
+      }
 
-       &.is-active {
-         box-shadow: 0px -4px 16px rgba(0,0,0,.175);
-       }
+      &.is-active {
+        box-shadow: 0px -4px 16px rgba(0, 0, 0, .175);
+      }
 
-       &.is-square {
-         width: 65px;
-       }
+      &.is-square {
+        width: 65px;
+      }
 
-       &.is-closed {
-         img {
-           transform: rotate(180deg);
-         }
-       }
+      &.is-closed {
+        img {
+          transform: rotate(180deg);
+        }
+      }
     }
 
     .menu {

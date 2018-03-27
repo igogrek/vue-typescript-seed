@@ -1,9 +1,13 @@
+declare let process: any;
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 
 import {SET_ALARMS, NAV_TOGGLED, EDIT_ALARM_OPEN} from './mutation-types'
+import devices from './modules/devices'
+import nav from './modules/nav'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
@@ -23,4 +27,11 @@ export default new Vuex.Store({
       Vue.set(payload.alarm, payload.index, payload.item)
     }
   },
+  modules: {
+    devices,
+    nav,
+  }
 })
+
+
+
