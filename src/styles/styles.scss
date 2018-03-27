@@ -24,6 +24,10 @@ body {
     font-weight: 500;
   }
 
+  &.is-secondary {
+    color: $secondary-text;
+  }
+
   &.is-size-12{
     font-size: 12px;
   }

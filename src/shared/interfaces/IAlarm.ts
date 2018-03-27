@@ -3,7 +3,6 @@ export interface IAlarm {
   severity: string;
   status: string;
   text: string;
-  line: string;
   time:Date;
   type:string;
   source: IAlarmSource,

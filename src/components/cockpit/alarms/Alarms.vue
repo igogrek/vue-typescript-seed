@@ -24,9 +24,9 @@
     </div>
     <div class="alarms">
       <div
+        class="title alarm"
         v-for="alarm in alarms"
-        :key="alarm.id"
-        class="title alarm">
+        :key="alarm.id">
         <div class="alarm-header">
           <div
             class="alarm-image"
@@ -47,10 +47,10 @@
             </div>
             <div class="level-right">
               <img
-                @click="editAlarm(alarm, 'isOpen', !alarm.isOpen)"
-                :class = "{'is-open' : alarm.isOpen }"
                 class="alarm-button"
-                src="../../assets/angle-down.svg">
+                src="../../assets/angle-down.svg"
+                :class = "{'is-open' : alarm.isOpen }"
+                @click="editAlarm(alarm, 'isOpen', !alarm.isOpen)">
             </div>
           </div>
           <div class="level is-no-margin alarm-level">
@@ -58,12 +58,20 @@
               <img
                 class="alarm-icon is-transparent"
                 src="../../root/assets/bell.svg">
-              <span class="title is-5 is-size-14 is-no-margin">{{ new Date(alarm.time).toUTCString() }}</span>
-              <span class="title is-5 is-size-14 is-no-margin"> - {{ alarm.source.name }}</span>
+              <span class="title is-5 is-size-14 is-no-margin is-secondary">{{ new Date(alarm.time).toUTCString() }}</span>
+              <span class="title is-5 is-size-14 is-no-margin is-secondary"> - {{ alarm.source.name }}</span>
             </div>
           </div>
-          <div class="level">
-            Status:
+          <div class="level is-no-margin alarm-level">
+            <span class="level-left title is-size-16 is-5 alarm-divider">
+              Status
+            </span>
+          </div>
+          <div class="level is-no-margin alarm-level">
+            <span class="title is-5 is-size-14">ACTIVE: triggered 4 years ago</span>
+          </div>
+          <div class="level is-no-margin alarm-level">
+            <span class="title is-5 is-size-14 is-no-margin is-secondary">Type {{ alarm.type }}</span>
           </div>
         </div>
       </div>
@@ -78,7 +86,7 @@
   import {SET_ALARMS, EDIT_ALARM_OPEN} from '../../../store/mutation-types';
 
   export default Vue.extend({
-    name: 'Alarms',
+    name : 'Alarms',
     data() {
       return {
         severity: {
@@ -164,24 +172,14 @@
       background-color: $white;
       box-shadow: 0 1px 1px 0.003em rgba(0,0,0,.16);
 
-      &-header {
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid $border;
-      }
-
       &-body {
         height: 62px;
         overflow: hidden;
         transition: height .3s;
 
         &.is-open {
-          height: 100px;
+          height: 140px;
         }
-      }
-
-      &-level {
-        padding: 8px 15px 0 15px;
       }
 
       &-button {
@@ -192,17 +190,22 @@
         }
       }
 
-      &-image {
-        background-color: $critical;
-        display: inline-block;
-        height: 40px;
-        width: 44px;
-        text-align: center;
-        margin-right: 10px;
-
-        span {
-          color: $white;
+      &-divider {
+        color: $magenta;
+        width: 100%;
+        &:after {
+          align-self: center;
+          content: '';
+          border-top: 1px solid $magenta;
+          flex: 1 1 auto;
+          margin-left: 8px;
         }
+      }
+
+      &-header {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $border;
       }
 
       &-icon {
@@ -219,6 +222,23 @@
         &.is-transparent {
           background-color: transparent;
         }
+      }
+
+      &-image {
+        background-color: $critical;
+        display: inline-block;
+        height: 40px;
+        width: 44px;
+        text-align: center;
+        margin-right: 10px;
+
+        span {
+          color: $white;
+        }
+      }
+
+      &-level {
+        padding: 8px 15px 0 15px;
       }
 
       .is-no-margin {
