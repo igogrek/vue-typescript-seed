@@ -19,7 +19,7 @@
   import SideNavigation from './components/root/SideNavigation.vue';
 
   declare const require: (moduleId: string) => any;
-  const MaterialComponents = require("vue-material");
+  const MaterialComponents = require('vue-material');
 
   Vue.use(MaterialComponents.default);
 
@@ -28,7 +28,7 @@
     components: {
       Header,
       SideNavigation,
-      'box-component': BoxComponent,
+      'box-component': BoxComponent
 
     }
 

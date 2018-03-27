@@ -1,17 +1,28 @@
 <template>
   <section class="device-panel">
-    <box-component class="alarm-box" title="ACTIVE, CRITICAL ALARMS">
+    <box-component
+      class="alarm-box"
+      title="ACTIVE, CRITICAL ALARMS">
       <div class="box-row">
-        <img class="icon" src="../../assets/alert-idle.svg"/>
+        <img
+          class="icon"
+          src="../../assets/alert-idle.svg">
         <span>No alarms to display</span>
       </div>
 
     </box-component>
-    <box-component class="map-box" title="MAP" v-bind:fillIn="true">
-      <div id="app" style="height: 100%">
-        <v-map :zoom=13 :center="[47.413220, -1.219482]">
-          <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-          <v-marker :lat-lng="[47.413220, -1.219482]"></v-marker>
+    <box-component
+      class="map-box"
+      title="MAP"
+      :fill-in="true">
+      <div
+        id="app"
+        style="height: 100%">
+        <v-map
+          :zoom="13"
+          :center="[47.413220, -1.219482]">
+          <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"/>
+          <v-marker :lat-lng="[47.413220, -1.219482]"/>
         </v-map>
       </div>
     </box-component>
@@ -22,11 +33,11 @@
 
 <script lang="ts">
 
-  import Vue from 'vue'
-  import BoxComponent from '../../common/box/box-component.vue'
+  import Vue from 'vue';
+  import BoxComponent from '../../common/box/box-component.vue';
 
   declare const require: (moduleId: string) => any;
-  const Vue2Leaflet = require("vue2-leaflet");
+  const Vue2Leaflet = require('vue2-leaflet');
 
   export default Vue.extend({
     name: 'device-panel',
@@ -35,8 +46,8 @@
       'v-map': Vue2Leaflet.Map,
       'v-tilelayer': Vue2Leaflet.TileLayer,
       'v-marker': Vue2Leaflet.Marker
-    },
-  })
+    }
+  });
 </script>
 
 <style lang="scss" scoped>

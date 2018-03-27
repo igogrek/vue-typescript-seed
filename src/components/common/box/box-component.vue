@@ -1,9 +1,11 @@
 <template>
-  <div class="box">
+  <div class="box-container">
     <div class="box-header">
-      <span>{{title}}</span>
+      <span>{{ title }}</span>
     </div>
-    <section class="box-content" v-bind:class="[fillIn ? 'padding-of' : '']">
+    <section
+      class="box-content"
+      :class="[fillIn ? 'padding-of' : '']">
       <slot><p>Some content goes here</p></slot>
     </section>
   </div>
@@ -14,7 +16,7 @@
   import Vue from 'vue';
 
   export default Vue.extend({
-    name: "box-component",
+    name: 'box-component',
 
     props: {
       title: {
@@ -27,9 +29,9 @@
       }
     },
     data() {
-      return {}
+      return {};
     }
-  })
+  });
 </script>
 
 <style scoped lang="scss">
@@ -42,7 +44,7 @@
   $box-header-padding: 10px;
   $box-content-padding: 20px;
 
-  .box {
+  .box-container {
     display: flex;
     flex-direction: column;
     flex: 1 1 100%;
