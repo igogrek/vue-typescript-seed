@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="11px" viewBox="0 0 17 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>angle-down</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Shared" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-220.000000, -93.000000)" fill-rule="nonzero" fill="#C9CECE">
+            <g id="angle-down" transform="translate(220.000000, 93.000000)">
+                <path d="M7.62616822,10.6077882 L0.423676012,3.40529595 C-0.0741433022,2.90747664 -0.0741433022,2.10249221 0.423676012,1.60996885 L1.62056075,0.413084112 C2.11838006,-0.0847352025 2.92336449,-0.0847352025 3.41588785,0.413084112 L8.5211838,5.51838006 L13.6264798,0.413084112 C14.1242991,-0.0847352025 14.9292835,-0.0847352025 15.4218069,0.413084112 L16.6186916,1.60996885 C17.1165109,2.10778816 17.1165109,2.91277259 16.6186916,3.40529595 L9.41619938,10.6077882 C8.92897196,11.1056075 8.12398754,11.1056075 7.62616822,10.6077882 L7.62616822,10.6077882 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

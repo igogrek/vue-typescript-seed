@@ -4,38 +4,38 @@
       <h5 class="title is-uppercase is-size-16">Schnell links</h5>
     </div>
     <div class="columns is-gapless no-margin">
-      <a
-        class="column is-one-quarter links-item is-yellow"
-        href="#">
+      <router-link
+        to="/"
+        class="column is-one-quarter links-item is-yellow">
         <img src="../assets/addPhone.svg">
         <span class="title is-uppercase is-5 is-size-16">Handy hinzufuegen</span>
-      </a>
-      <a
-        class="column is-one-quarter links-item is-purple"
-        href="#">
+      </router-link>
+      <router-link
+        to="/"
+        class="column is-one-quarter links-item is-purple">
         <img src="../assets/user-plus.svg">
         <span class="title is-uppercase is-5 is-size-16">Benutzer hinzufuegen</span>
-      </a>
-      <a
-        class="column is-one-quarter links-item is-green"
-        href="#">
+      </router-link>
+      <router-link
+        to="/"
+        class="column is-one-quarter links-item is-green">
         <img src="../assets/plug.svg">
         <span class="title is-uppercase is-5 is-size-16">device hinzufuegen</span>
-      </a>
-      <a
-        class="column is-one-quarter links-item is-orange"
-        href="#">
+      </router-link>
+      <router-link
+        to="/"
+        class="column is-one-quarter links-item is-orange">
         <img src="../assets/device-management.svg">
         <span class="title is-uppercase is-5 is-size-16">device management</span>
-      </a>
+      </router-link>
     </div>
     <div class="columns is-gapless no-margin">
-      <a
-        class="column links-item is-magenta is-full-width"
-        href="#">
+      <router-link
+        to="/"
+        class="column links-item is-magenta is-full-width">
         <img src="../assets/comments.svg">
         <span class="title is-uppercase is-5 is-size-16">Hilfe und Service</span>
-      </a>
+      </router-link>
     </div>
   </div>
 </template>

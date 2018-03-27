@@ -1,4 +1,4 @@
-export interface DeviceListNode {
+export interface IDeviceListNode {
   id: number
   name: string
   connection: ConnectionStatus

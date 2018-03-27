@@ -1,14 +1,16 @@
 import {mutations} from "./mutations";
 import {actions} from "./actions";
 import {getters} from "./getters";
-import {IDeviceListNode} from "../../../shared/interfaces/IDeviceListNode";
+import  {IAlarm} from "../../../shared/interfaces/IAlarm";
 
-export interface DeviceState {
-  devices: Array<IDeviceListNode>;
+export interface AlarmState {
+  alarms: IAlarm[];
+  loading: boolean;
 }
 
-const initialState: DeviceState = {
-  devices: []
+const initialState: AlarmState = {
+  alarms: [],
+  loading: true
 };
 
 export default {

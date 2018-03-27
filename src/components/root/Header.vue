@@ -53,7 +53,7 @@
             <span class="title is-size-12">Cockpit</span>
           </router-link>
           <router-link
-            to="/devices"
+            to="/device/home"
             class="menu-link"
             active-class="is-active">
             <img

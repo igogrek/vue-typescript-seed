@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Alarms from '../components/cockpit/alarms/Alarms.vue';
 import Cockpit from '../components/cockpit/Cockpit.vue';
 import DataExplorer from '../components/cockpit/DataExplorer.vue';
 
-import DeviceHome from '../components/device/home/device-panel.vue';
-import DeviceList from '../components/device/list/device-list.vue';
+import DeviceHome from '../components/device/home/DevicePanel.vue';
+import DeviceList from '../components/device/list/DeviceList.vue';
 
 Vue.use(Router);
 
@@ -29,7 +30,16 @@ export default new Router({
       path: '/device/list',
       name: 'DeviceList',
       component: DeviceList,
+    },
+    {
+      path: '/test/:id',
+      name: 'Test',
+      component: Cockpit,
+    },
+    {
+      path: '/alarms',
+      name: 'Alarms',
+      component: Alarms
     }
-
   ],
 });

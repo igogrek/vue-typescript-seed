@@ -55,6 +55,7 @@
   import Vue from 'vue';
   import Highcharts, {ChartObject} from 'highcharts';
   import axios from 'axios';
+  import {Config} from '../../store/config';
 
   interface IDataResponse {
     series: {
@@ -86,7 +87,7 @@
     enabled: Boolean;
   }
 
-  axios.defaults.headers.get.auth = 'Basic YXJ0dXJfZmpvZG9yb3ZAbWFpbC5ydToxQXNzLTRvbGUy';
+  axios.defaults.headers.get.auth = Config.API_KEY;
 
   export default Vue.extend({
     data(): IData {
@@ -113,7 +114,7 @@
     },
     methods: {
       getData(seriesName: string, sourceId: string) {
-        const URL = 'https://arturfedorov.cumulocity.com/measurement/measurements/series';
+        const URL = `${Config.API_PATH}measurement/measurements/series`;
         axios.get<IDataResponse>(`${URL}?aggregationType=MINUTELY&dateFrom=${this.dateFrom.toISOString().slice(0, 19)}%2B03:00&dateTo=${this.dateTo.toISOString().slice(0, 19)}%2B03:00&pageSize=1440&revert=true&series=${seriesName}&source=${sourceId}`)
           .then(response => {
             if (this.chart) {
