@@ -58,8 +58,12 @@
               <img
                 class="alarm-icon is-transparent"
                 src="../../root/assets/bell.svg">
-              <span class="title is-5 is-size-14 is-no-margin is-secondary">{{ new Date(alarm.time).toUTCString() }}</span>
-              <span class="title is-5 is-size-14 is-no-margin is-secondary"> - {{ alarm.source.name }}</span>
+              <span class="title is-5 is-size-14 is-no-margin is-secondary">
+                {{ new Date(alarm.time).toUTCString() }}
+              </span>
+              <span class="title is-5 is-size-14 is-no-margin is-secondary">
+                - {{ alarm.source.name }}
+              </span>
             </div>
           </div>
           <div class="level is-no-margin alarm-level">
@@ -71,7 +75,9 @@
             <span class="title is-5 is-size-14">ACTIVE: triggered 4 years ago</span>
           </div>
           <div class="level is-no-margin alarm-level">
-            <span class="title is-5 is-size-14 is-no-margin is-secondary">Type {{ alarm.type }}</span>
+            <span class="title is-5 is-size-14 is-no-margin is-secondary">
+              Type {{ alarm.type }}
+            </span>
           </div>
         </div>
       </div>
@@ -81,12 +87,12 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import axios from 'axios';
+  import {mapActions, mapGetters} from 'vuex';
   import {IAlarm} from '../../../shared/interfaces/IAlarm';
-  import {SET_ALARMS, EDIT_ALARM_OPEN} from '../../../store/mutation-types';
+  import * as types from '../../../store/modules/types/alarm-types';
 
   export default Vue.extend({
-    name : 'Alarms',
+    name: 'Alarms',
     data() {
       return {
         severity: {
@@ -96,26 +102,18 @@
         }
       };
     },
-    computed: {
-      alarms() : IAlarm[] {
-        return this.$store.state.alarms;
-      }
-    },
+    computed: mapGetters({
+      alarms: types.GET_ALARMS
+    }),
     created() {
-      const API_KEY: string = 'Basic YXJ0dXJfZmpvZG9yb3ZAbWFpbC5ydToxQXNzLTRvbGUy';
-      const API_PATH: string = 'https://arturfedorov.cumulocity.com/';
-
-      const ALARM_PATH: string = `${API_PATH}alarm/alarms`;
-      const AUTH_HEADER = {Authorization: API_KEY};
-
-      axios.get(ALARM_PATH, {headers: AUTH_HEADER})
-        .then(response => {
-          this.$store.commit(SET_ALARMS, response.data.alarms);
-        });
+      this.fetchAlarms();
     },
     methods: {
+      ...mapActions({
+        fetchAlarms: types.FETCH_ALARMS
+      }),
       editAlarm(alarm:IAlarm, index: string, item: boolean) {
-        this.$store.commit(EDIT_ALARM_OPEN, {alarm, index, item});
+        this.$store.commit(types.EDIT_ALARM_OPEN, {alarm, index, item});
       }
     }
   });

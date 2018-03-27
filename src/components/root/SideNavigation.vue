@@ -27,7 +27,7 @@
           <span class="title is-5 is-size-16">Home</span>
         </router-link>
         <router-link
-          to="/groups"
+          to="/device/list"
           class="side-navigation-link"
           active-class="is-active">
           <img
@@ -69,7 +69,7 @@
           <span class="title is-5 is-size-16">Alarms</span>
         </router-link>
         <router-link
-          to="/data"
+          to="/data-explorer"
           class="side-navigation-link"
           active-class="is-active">
           <img src="./assets/chart.svg">

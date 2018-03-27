@@ -1,10 +1,10 @@
 import {mutations} from "./mutations";
 import {actions} from "./actions";
 import {getters} from "./getters";
-import {DeviceListNode} from "../../../components/dto/DeviceListNode";
+import {IDeviceListNode} from "../../../shared/interfaces/IDeviceListNode";
 
 export interface DeviceState {
-  devices: Array<DeviceListNode>;
+  devices: Array<IDeviceListNode>;
 }
 
 const initialState: DeviceState = {

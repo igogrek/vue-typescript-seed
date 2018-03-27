@@ -1,8 +1,9 @@
 import axios from 'axios'
-import {FETCH_DEVICES, SET_DEVICES} from "../types/device-types";
+import {Config} from '../../config';
+import {FETCH_DEVICES, SET_DEVICES} from '../types/device-types';
 
-const API_KEY: string = "Basic ZXZnZW5paXJheS90aXRrb3YuZXZnZW5AZ21haWwuY29tOmRhcmtpODkyNzI3OA==";
-const API_PATH: string = 'https://evgeniiray.cumulocity.com/';
+const API_KEY: string = Config.API_KEY;
+const API_PATH: string = Config.API_PATH;
 
 const DEVICE_PATH: string = `${API_PATH}inventory/managedObjects`;
 const AUTH_HEADER = {'Authorization': API_KEY};
