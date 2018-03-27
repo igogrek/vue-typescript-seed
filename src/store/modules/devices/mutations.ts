@@ -4,13 +4,12 @@ import {ConnectionStatus, DeviceListNode} from "../../../components/dto/DeviceLi
 
 export const mutations = {
   [SET_DEVICES](state: DeviceState, devices: Object) {
-    debugger;
     state.devices = mapObjToDevices(devices);
   }
 };
 
 function mapObjToDevices(devices: any): Array<DeviceListNode> {
-  return devices.filter(obj => obj.name !== undefined)
+  return devices.filter(obj => Boolean(obj.name))
     .map(obj => {
       return {
         id: obj.id,

@@ -1,5 +1,5 @@
 <template>
-  <section class="list">
+  <section class="list box-shadowed">
     <md-table
       v-model="devices"
       md-sort="name"
@@ -57,13 +57,15 @@
 </script>
 
 <style lang="scss" scoped>
+
+  @import "../../../styles/effects";
+
   .list {
     display: flex;
     flex-direction: column;
     flex: 1 1 100%;
     background-color: white;
     color: black;
-    box-shadow: 0 1px 1px 0.003em rgba(0, 0, 0, .16);
   }
 
 </style>

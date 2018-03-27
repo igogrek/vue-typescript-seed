@@ -1,5 +1,5 @@
 <template>
-  <div class="box-container">
+  <div class="box-container box-shadowed">
     <div class="box-header">
       <span>{{ title }}</span>
     </div>
@@ -36,6 +36,8 @@
 
 <style scoped lang="scss">
 
+  @import "../../../styles/effects";
+
   $box-content-padding-right: 10px;
   $box-margin: 10px;
   $box-header-height: 30px;
@@ -53,7 +55,6 @@
     background: white;
 
     box-sizing: border-box;
-    box-shadow: 0 1px 1px 0.003em rgba(0, 0, 0, .16);
     margin: $box-margin;
 
     span {
