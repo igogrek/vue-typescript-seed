@@ -34,7 +34,7 @@
   }
 
   .view {
-    margin-top: $header-height;
+    margin-top: 0;
     overflow-y: auto;
     height: 100%;
     padding-bottom: 80px;
