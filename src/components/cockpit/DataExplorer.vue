@@ -27,7 +27,7 @@
               class="inline-block"/>
           </div>
         </div>
-        <div id="chart-container"></div>
+        <div id="chart-container"/>
       </div>
     </div>
     <div class="column is-one-quarter">
@@ -37,12 +37,12 @@
         </div>
         <div
           class="data-toggle"
-          v-for="(point, index) of dataPoints">
+          v-for="(point, index) of dataPoints"
+          :key="point.name">
           <b-switch
             v-model="point.enabled"
             @input="toggleSeries(point, index)"
-            class="switch">
-          </b-switch>
+            class="switch"/>
 
           {{ point.name }}
         </div>
@@ -128,7 +128,8 @@
                 };
 
                 dateKeys.forEach(dateKey => {
-                  series.data.push([new Date(dateKey).getTime(), response.data.values[dateKey][0].min]);
+                  series.data
+                    .push([new Date(dateKey).getTime(), response.data.values[dateKey][0].min]);
                 });
 
                 const axis = {
@@ -160,7 +161,7 @@
       createChart() {
         const theme = {
           colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066',
-            '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+                   '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
           tooltip: {
             borderWidth: 0,
             backgroundColor: 'rgba(219,219,216,0.8)',
