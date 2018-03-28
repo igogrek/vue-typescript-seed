@@ -1,25 +1,21 @@
+declare let process: any;
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import {DELETE_ITEM, EDIT_ITEM, SET_ITEMS} from './mutation-types'
+import alarms from './modules/alarms';
+import devices from './modules/devices'
+import nav from './modules/nav'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    items: [],
-    loading: true
-  },
-  mutations: {
-    [SET_ITEMS](state, payload) {
-      state.items = payload;
-      state.loading = false;
-    },
-    [DELETE_ITEM](state, index: number) {
-      state.items.splice(index, 1)
-    },
-    [EDIT_ITEM](state, payload) {
-      Vue.set(state.items, payload.index, payload.item)
-    },
-  },
+  modules: {
+    alarms,
+    devices,
+    nav,
+  }
 })
+
+
+

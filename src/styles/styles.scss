@@ -1,15 +1,54 @@
 @import 'variables';
 @import 'mixins';
+// Import Telekom fonts
+@import 'fonts';
 // Override bulma overrides
 @import './bulma-overrides';
 
-body {
-  font-size: $base-font-size;
+body, html {
+  height: 100%;
+  overflow: hidden;
 }
 
-.title.is-6 {
-  font-weight: bold;
-  color: $magenta;
+body {
+  font-size: $base-font-size;
+  background-color: $body-color;
+}
+
+.title{
+  &.is-6{
+    font-weight: bold;
+  }
+
+  &.is-5{
+    font-weight: 500;
+  }
+
+  &.is-secondary {
+    color: $secondary-text;
+  }
+
+  &.is-size-12{
+    font-size: 12px;
+  }
+
+  &.is-size-14{
+    font-size: 14px;
+  }
+
+  &.is-size-16{
+    font-size: 16px;
+  }
+
+  &.is-size-26{
+    font-size: 26px;
+  }
+}
+
+.columns {
+  &.is-full-height{
+    height: 100%;
+  }
 }
 
 .centered {

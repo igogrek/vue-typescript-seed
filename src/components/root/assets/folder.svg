@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="190px" height="142px" viewBox="0 0 190 142" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>folder</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Shared" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-78.000000, -39.000000)" fill-rule="nonzero" fill="#535A59">
+            <g id="folder" transform="translate(78.000000, 39.000000)">
+                <path d="M171.490112,23.6538086 L100.528687,23.6538086 L76.8748779,0 L17.7403564,0 C7.94250542,0 0,7.94250542 0,17.7403564 L0,124.182495 C0,133.980346 7.94250542,141.922852 17.7403564,141.922852 L171.490112,141.922852 C181.287963,141.922852 189.230469,133.980346 189.230469,124.182495 L189.230469,41.394165 C189.230469,31.596314 181.287963,23.6538086 171.490112,23.6538086 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
