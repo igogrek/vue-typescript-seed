@@ -51,11 +51,16 @@
 </script>
 
 <style lang="scss" scoped>
+  @import '../../../styles/variables';
+
+  $padding-side: 15px;
+
   .device-panel {
     display: flex;
     flex-direction: row;
     flex: 1 1 100%;
     color: black;
+    padding: $padding $padding-side $padding-side $padding-side;
   }
 
   .map-box {
