@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-import {DELETE_ITEM, EDIT_ITEM, SET_ITEMS} from './mutation-types'
+import {DELETE_ITEM, EDIT_ITEM, SET_ITEMS} from './mutation-types';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
@@ -16,10 +16,10 @@ export default new Vuex.Store({
       state.loading = false;
     },
     [DELETE_ITEM](state, index: number) {
-      state.items.splice(index, 1)
+      state.items.splice(index, 1);
     },
     [EDIT_ITEM](state, payload) {
-      Vue.set(state.items, payload.index, payload.item)
-    },
-  },
-})
+      Vue.set(state.items, payload.index, payload.item);
+    }
+  }
+});

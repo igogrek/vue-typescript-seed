@@ -9,7 +9,7 @@ export default new Router({
     {
       path: '/',
       name: 'ButtonTest',
-      component: ButtonTest,
-    },
-  ],
+      component: ButtonTest
+    }
+  ]
 });

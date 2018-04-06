@@ -1,8 +1,7 @@
-import {mount} from '@vue/test-utils'
-import Checkbox from './Checkbox.vue'
+import {mount} from '@vue/test-utils';
+import Checkbox from './Checkbox.vue';
 
 describe('Checkbox', () => {
-
   const wrapper = mount(Checkbox);
 
   it('unchecked by default', () => {
@@ -14,5 +13,4 @@ describe('Checkbox', () => {
 
     expect(wrapper.emitted()['update:checked']).toEqual([[true]]);
   });
-
 });

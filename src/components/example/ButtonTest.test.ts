@@ -1,9 +1,8 @@
+import {mount} from '@vue/test-utils';
 import ButtonTest from './ButtonTest.vue';
 import store from '../../store/index';
-import {mount} from '@vue/test-utils';
 
 describe('ButtonTest', () => {
-
   const wrapper = mount(ButtonTest, {store});
 
   it('should render correct contents', () => {
